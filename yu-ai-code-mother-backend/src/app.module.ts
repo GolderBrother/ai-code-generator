@@ -19,6 +19,7 @@ import { UsersModule } from './modules/users/users.module';
 import { AppsModule } from './modules/apps/apps.module';
 import { AiModule } from './modules/ai/ai.module';
 import { ChatModule } from './modules/chat/chat.module';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -58,7 +59,7 @@ import { ChatModule } from './modules/chat/chat.module';
     AiModule,
     ChatModule,
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
-export class AppModule {}
+export class AppModule { }

@@ -19,7 +19,7 @@ export class AppsService {
       ...createAppDto,
       userId: user.id,
     });
-    return this.appRepository.save(app);
+    return this.appRepository.save(await app);
   }
 
   async findAppById(id: number): Promise<App> {

@@ -1,13 +1,11 @@
-# 数据库初始化
-# @author <a href="https://github.com/liyupi">程序员鱼皮</a>
-# @from <a href="https://codefather.cn">编程导航学习圈</a>
+-- 数据库初始化
 
 -- 创建库
 create database if not exists yu_ai_code_mother;
 
 -- 切换库
 use yu_ai_code_mother;
-
+app
 -- 用户表
 -- 以下是建表语句
 

@@ -29,7 +29,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
           : exceptionResponse.message;
       }
       if ('error' in exceptionResponse) {
-        error = exceptionResponse.error;
+        error = String(exceptionResponse.error);
       }
     }
 

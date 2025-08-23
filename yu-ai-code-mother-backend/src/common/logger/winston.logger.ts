@@ -7,6 +7,22 @@ export class WinstonLogger implements LoggerService {
   private logger: winston.Logger;
 
   constructor(private configService: ConfigService) {
+    this.initializeLogger();
+  }
+
+  private initializeLogger() {
+    // 确保日志目录存在
+    const logFile = this.configService.get('LOG_FILE', './logs/app.log');
+    const logDir = logFile.substring(0, logFile.lastIndexOf('/'));
+    
+    try {
+      if (logDir && logDir !== './logs') {
+        require('fs').mkdirSync(logDir, { recursive: true });
+      }
+    } catch (error) {
+      // 忽略目录创建错误
+    }
+
     this.logger = winston.createLogger({
       level: this.configService.get('LOG_LEVEL', 'info'),
       format: winston.format.combine(
@@ -27,7 +43,7 @@ export class WinstonLogger implements LoggerService {
         }),
         // 文件输出
         new winston.transports.File({
-          filename: this.configService.get('LOG_FILE', './logs/app.log'),
+          filename: logFile,
           maxsize: 5242880, // 5MB
           maxFiles: 5,
         }),

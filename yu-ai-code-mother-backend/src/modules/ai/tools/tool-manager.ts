@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Tool } from '@langchain/core/tools';
+import { StructuredTool } from '@langchain/core/tools';
 import { FileWriteTool } from './file-write.tool';
 import { FileDeleteTool } from './file-delete.tool';
 import { ImageSearchTool } from './image-search.tool';
@@ -16,7 +16,7 @@ export class ToolManager {
     private readonly mermaidDiagramTool: MermaidDiagramTool,
   ) {}
 
-  getAllTools(): Tool[] {
+  getAllTools(): StructuredTool[] {
     return [
       this.fileWriteTool,
       this.fileDeleteTool,
@@ -26,7 +26,7 @@ export class ToolManager {
     ];
   }
 
-  getToolByName(name: string): Tool | undefined {
+  getToolByName(name: string): StructuredTool | undefined {
     return this.getAllTools().find(tool => tool.name === name);
   }
 }

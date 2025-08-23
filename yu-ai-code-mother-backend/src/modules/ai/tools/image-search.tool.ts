@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { Tool } from '@langchain/core/tools';
+import { StructuredTool } from '@langchain/core/tools';
 import { z } from 'zod';
 
 @Injectable()
-export class ImageSearchTool extends Tool {
+export class ImageSearchTool extends StructuredTool {
   schema = z.object({
     query: z.string().describe('搜索关键词'),
     count: z.number().optional().describe('返回图片数量，默认5张'),

@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { Tool } from '@langchain/core/tools';
+import { StructuredTool } from '@langchain/core/tools';
 import { z } from 'zod';
 import * as fs from 'fs/promises';
 
 @Injectable()
-export class FileDeleteTool extends Tool {
+export class FileDeleteTool extends StructuredTool {
   schema = z.object({
     file_path: z.string().describe('要删除的文件路径'),
   });

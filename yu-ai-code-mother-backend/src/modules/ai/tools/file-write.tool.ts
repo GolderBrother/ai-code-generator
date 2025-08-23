@@ -1,18 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import { Tool } from '@langchain/core/tools';
+import { StructuredTool } from '@langchain/core/tools';
 import { z } from 'zod';
 import * as fs from 'fs/promises';
 import * as path from 'path';
 
 @Injectable()
-export class FileWriteTool extends Tool {
+export class FileWriteTool extends StructuredTool {
+  name = 'file_write';
+  description = '将内容写入文件';
+  
   schema = z.object({
     file_path: z.string().describe('文件路径'),
     content: z.string().describe('文件内容'),
   });
-
-  name = 'file_write';
-  description = '将内容写入文件';
 
   async _call(input: z.infer<typeof this.schema>): Promise<string> {
     const { file_path, content } = input;

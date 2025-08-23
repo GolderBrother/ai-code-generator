@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { Tool } from '@langchain/core/tools';
+import { StructuredTool } from '@langchain/core/tools';
 import { z } from 'zod';
 
 @Injectable()
-export class MermaidDiagramTool extends Tool {
+export class MermaidDiagramTool extends StructuredTool {
   schema = z.object({
     diagram_type: z.string().describe('图表类型，如：flowchart、sequence、class、er等'),
     description: z.string().describe('图表描述或需求'),

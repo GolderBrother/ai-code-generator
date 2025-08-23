@@ -19,15 +19,23 @@ export interface MultiFileCodeResult {
 
 @Injectable()
 export class AiService {
-  private readonly openai: ChatOpenAI;
+  private readonly openai: ChatOpenAI | null;
 
   constructor(private readonly configService: ConfigService) {
-    this.openai = new ChatOpenAI({
-      openAIApiKey: this.configService.get('OPENAI_API_KEY'),
-      modelName: this.configService.get('OPENAI_MODEL', 'gpt-3.5-turbo'),
-      temperature: 0.7,
-      maxTokens: 4000,
-    });
+    const apiKey = this.configService.get('OPENAI_API_KEY');
+    
+    // 如果没有有效的API密钥，设置为null
+    if (!apiKey || apiKey === 'your-openai-api-key' || apiKey === 'sk-test-key-for-development') {
+      console.warn('OpenAI API key not configured properly. AI features will be disabled.');
+      this.openai = null;
+    } else {
+      this.openai = new ChatOpenAI({
+        openAIApiKey: apiKey,
+        modelName: this.configService.get('OPENAI_MODEL', 'gpt-3.5-turbo'),
+        temperature: 0.7,
+        maxTokens: 4000,
+      });
+    }
   }
 
   async generateHtmlCode(userMessage: string): Promise<HtmlCodeResult> {

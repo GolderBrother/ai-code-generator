@@ -9,11 +9,10 @@ import { RolesGuard } from './guards/roles.guard';
 
 // 策略
 import { JwtStrategy } from './strategies/jwt.strategy';
-import { LocalStrategy } from './strategies/local.strategy';
 
 // 装饰器
-import { Roles } from './decorators/roles.decorator';
-import { CurrentUser } from './decorators/current-user.decorator';
+// import { Roles } from './decorators/roles.decorator';
+// import { CurrentUser } from './decorators/current-user.decorator';
 
 // 拦截器
 import { TransformInterceptor } from './interceptors/transform.interceptor';
@@ -43,7 +42,6 @@ import { ValidationPipe } from './pipes/validation.pipe';
     JwtAuthGuard,
     RolesGuard,
     JwtStrategy,
-    LocalStrategy,
     TransformInterceptor,
     LoggingInterceptor,
     HttpExceptionFilter,
@@ -54,8 +52,8 @@ import { ValidationPipe } from './pipes/validation.pipe';
     PassportModule,
     JwtAuthGuard,
     RolesGuard,
-    Roles,
-    CurrentUser,
+    // Roles,
+    // CurrentUser,
     TransformInterceptor,
     LoggingInterceptor,
     HttpExceptionFilter,

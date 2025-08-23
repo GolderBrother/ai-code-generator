@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { Tool } from '@langchain/core/tools';
+import { StructuredTool } from '@langchain/core/tools';
 import { z } from 'zod';
 
 @Injectable()
-export class LogoGeneratorTool extends Tool {
+export class LogoGeneratorTool extends StructuredTool {
   schema = z.object({
     company_name: z.string().describe('公司或项目名称'),
     style: z.string().optional().describe('Logo 风格，如：现代、经典、简约等'),
