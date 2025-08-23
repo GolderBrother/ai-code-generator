@@ -58,5 +58,26 @@ export class AppRepository {
       where: { userId, isDelete: false },
     });
   }
+
+  // ========== 补充缺失的仓库方法 ==========
+
+  // 查找所有应用
+  async findAll(): Promise<App[]> {
+    return this.appRepository.find({
+      where: { isDelete: false },
+      order: { createTime: 'DESC' },
+    });
+  }
+
+  // 查找精选应用
+  async findGoodApps(): Promise<App[]> {
+    return this.appRepository.find({
+      where: { 
+        isDelete: false,
+        appStatus: 1, // 假设状态1表示精选
+      },
+      order: { createTime: 'DESC' },
+    });
+  }
 }
 

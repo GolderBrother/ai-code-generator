@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { APP_GUARD } from '@nestjs/core';
 
 // 守卫
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
@@ -10,9 +11,6 @@ import { RolesGuard } from './guards/roles.guard';
 // 策略
 import { JwtStrategy } from './strategies/jwt.strategy';
 
-// 装饰器
-// import { Roles } from './decorators/roles.decorator';
-// import { CurrentUser } from './decorators/current-user.decorator';
 
 // 拦截器
 import { TransformInterceptor } from './interceptors/transform.interceptor';
@@ -41,6 +39,14 @@ import { ValidationPipe } from './pipes/validation.pipe';
   providers: [
     JwtAuthGuard,
     RolesGuard,
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
     JwtStrategy,
     TransformInterceptor,
     LoggingInterceptor,
@@ -52,8 +58,6 @@ import { ValidationPipe } from './pipes/validation.pipe';
     PassportModule,
     JwtAuthGuard,
     RolesGuard,
-    // Roles,
-    // CurrentUser,
     TransformInterceptor,
     LoggingInterceptor,
     HttpExceptionFilter,

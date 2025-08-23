@@ -11,17 +11,21 @@ import {
 } from '@nestjs/common';
 import { ChatService } from './chat.service';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { RolesGuard } from '../../common/guards/roles.guard';
+import { Roles } from '../../common/decorators/roles.decorator';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 
 @Controller('chat')
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, RolesGuard)
 export class ChatController {
   constructor(private readonly chatService: ChatService) {}
 
   @Get('history/:appId')
+  @Roles('user', 'admin')
   async getChatHistory(
     @Param('appId', ParseIntPipe) appId: number,
     @Query('limit') limit: number = 20,
+    @CurrentUser() user,
   ) {
     const history = await this.chatService.getChatHistoryByAppId(appId, limit);
     return {
@@ -32,6 +36,7 @@ export class ChatController {
   }
 
   @Get('history/user/:userId')
+  @Roles('admin')
   async getUserChatHistory(
     @Param('userId', ParseIntPipe) userId: number,
     @Query('limit') limit: number = 20,
@@ -45,7 +50,8 @@ export class ChatController {
   }
 
   @Delete('message/:id')
-  async deleteChatMessage(@Param('id', ParseIntPipe) id: number) {
+  @Roles('user', 'admin')
+  async deleteChatMessage(@Param('id', ParseIntPipe) id: number, @CurrentUser() user) {
     await this.chatService.deleteChatMessage(id);
     return {
       code: 0,
@@ -54,7 +60,8 @@ export class ChatController {
   }
 
   @Get('count/:appId')
-  async getChatMessageCount(@Param('appId', ParseIntPipe) appId: number) {
+  @Roles('user', 'admin')
+  async getChatMessageCount(@Param('appId', ParseIntPipe) appId: number, @CurrentUser() user) {
     const count = await this.chatService.getChatMessageCount(appId);
     return {
       code: 0,
