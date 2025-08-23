@@ -9,6 +9,9 @@ import {
   Query,
   UseGuards,
   ParseIntPipe,
+  Res,
+  Req,
+  Session,
 } from "@nestjs/common";
 import { UsersService } from "./users.service";
 import { JwtAuthGuard } from "../../common/guards/jwt-auth.guard";
@@ -117,6 +120,7 @@ export class UsersController {
    * @returns 注册结果
    */
   @Post('register')
+  @Public() // 标记不需要认证的路由
   async userRegister(@Body() registerDto: RegisterDto) {
     const result = await this.usersService.userRegister(registerDto);
     return {
@@ -129,11 +133,13 @@ export class UsersController {
   /**
    * 用户登录 - 公开接口
    * @param loginDto 用户登录请求
+   * @param req 请求对象，用于获取session
    * @returns 脱敏后的用户登录信息
    */
   @Post("login")
-  async userLogin(@Body() loginDto: LoginDto) {
-    const result = await this.usersService.userLogin(loginDto);
+  @Public() // 标记不需要认证的路由
+  async userLogin(@Body() loginDto: LoginDto, @Req() req) {
+    const result = await this.usersService.userLogin(loginDto, req);
     return {
       code: 0,
       data: result,
@@ -143,36 +149,29 @@ export class UsersController {
 
   /**
    * 获取当前登录用户信息 - 公开接口（用于检查登录状态）
-   * @param user 当前用户（可能为空）
+   * @param req 请求对象，用于获取session
    * @returns 登录用户信息或null
    */
   @Get("get/login")
   @Public()
-  async getLoginUser(@CurrentUser() user) {
-    if (!user) {
-      return {
-        code: 0,
-        data: null,
-        message: "用户未登录",
-      };
-    }
-    const userInfo = await this.usersService.getLoginUserVO(user);
+  async getLoginUser(@Req() req) {
+    const result = await this.usersService.getLoginUser(req);
     return {
       code: 0,
-      data: userInfo,
-      message: "获取登录用户信息成功",
+      data: result,
+      message: result ? "获取登录用户信息成功" : "用户未登录",
     };
   }
 
   /**
    * 用户注销
-   * @param user 当前用户
+   * @param req 请求对象，用于获取session
    * @returns 注销结果
    */
   @Post("logout")
-  @UseGuards(JwtAuthGuard)
-  async userLogout(@CurrentUser() user) {
-    const result = await this.usersService.userLogout(user.id);
+  @Public()
+  async userLogout(@Req() req) {
+    const result = await this.usersService.userLogout(req);
     return {
       code: 0,
       data: result,

@@ -118,15 +118,25 @@ const handleMenuClick: MenuProps['onClick'] = (e) => {
 
 // 退出登录
 const doLogout = async () => {
-  const res = await userLogout()
-  if (res.data.code === 0) {
+  try {
+    const res = await userLogout()
+    if (res.data.code === 0) {
+      // 重置登录用户状态（cookie会被后端自动清除）
+      loginUserStore.setLoginUser({
+        userName: '未登录',
+      })
+      message.success('退出登录成功')
+      await router.push('/user/login')
+    } else {
+      message.error('退出登录失败，' + res.data.message)
+    }
+  } catch (error) {
+    // 即使后端退出登录失败，也要清除前端的登录状态
     loginUserStore.setLoginUser({
       userName: '未登录',
     })
     message.success('退出登录成功')
     await router.push('/user/login')
-  } else {
-    message.error('退出登录失败，' + res.data.message)
   }
 }
 </script>

@@ -26,7 +26,8 @@ export class DatabaseConfig implements TypeOrmOptionsFactory {
       username,
       password,
       database,
-      synchronize: isDevelopment,
+      synchronize: true, // 强制同步表结构
+      dropSchema: false, // 不删除现有数据
       logging: isDevelopment,
       charset: 'utf8mb4',
       timezone: '+08:00',

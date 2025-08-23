@@ -13,9 +13,19 @@ export const useLoginUserStore = defineStore('loginUser', () => {
 
   // 获取登录用户信息
   async function fetchLoginUser() {
-    const res = await getLoginUser()
-    if (res.data.code === 0 && res.data.data) {
-      loginUser.value = res.data.data
+    try {
+      const res = await getLoginUser()
+      if (res.data.code === 0 && res.data.data) {
+        loginUser.value = res.data.data
+      }
+    } catch (error: any) {
+      // 如果是401错误（未登录），重置为默认状态
+      if (error.response?.status === 401) {
+        loginUser.value = {
+          userName: '未登录',
+        }
+      }
+      console.log('获取登录用户信息失败:', error.message)
     }
   }
 

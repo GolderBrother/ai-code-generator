@@ -11,11 +11,11 @@ export class UserRepository {
   ) {}
 
   async findById(id: number): Promise<User | null> {
-    return this.userRepository.findOne({ where: { id, isDelete: false } });
+    return this.userRepository.findOne({ where: { id, isDelete: 0 } });
   }
 
   async findByAccount(account: string): Promise<User | null> {
-    return this.userRepository.findOne({ where: { userAccount: account, isDelete: false } });
+    return this.userRepository.findOne({ where: { userAccount: account, isDelete: 0 } });
   }
 
   async create(userData: Partial<User>): Promise<User> {
@@ -29,15 +29,15 @@ export class UserRepository {
   }
 
   async delete(id: number): Promise<boolean> {
-    const result = await this.userRepository.update(id, { isDelete: true });
+    const result = await this.userRepository.update(id, { isDelete: 1 });
     return result.affected > 0;
   }
 
   async findAll(): Promise<User[]> {
-    return this.userRepository.find({ where: { isDelete: false } });
+    return this.userRepository.find({ where: { isDelete: 0 } });
   }
 
   async findByRole(role: string): Promise<User[]> {
-    return this.userRepository.find({ where: { userRole: role, isDelete: false } });
+    return this.userRepository.find({ where: { userRole: role, isDelete: 0 } });
   }
 }

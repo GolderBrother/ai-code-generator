@@ -16,29 +16,35 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: 'user_name', length: 256, nullable: true })
-  userName: string;
-
-  @Column({ name: 'user_account', length: 256, unique: true })
+  @Column({ length: 256, unique: true })
   userAccount: string;
 
-  @Column({ name: 'user_password', length: 256 })
+  @Column({ length: 512 })
   userPassword: string;
 
-  @Column({ name: 'user_avatar', length: 1024, nullable: true })
+  @Column({ length: 256, nullable: true })
+  userName: string;
+
+  @Column({ length: 1024, nullable: true })
   userAvatar: string;
 
-  @Column({ name: 'user_role', length: 256, default: 'user' })
+  @Column({ length: 512, nullable: true })
+  userProfile: string;
+
+  @Column({ length: 256, default: 'user' })
   userRole: string;
 
-  @CreateDateColumn({ name: 'create_time' })
+  @Column({ type: 'datetime', nullable: true })
+  editTime: Date;
+
+  @CreateDateColumn({ type: 'datetime' })
   createTime: Date;
 
-  @UpdateDateColumn({ name: 'update_time' })
+  @UpdateDateColumn({ type: 'datetime' })
   updateTime: Date;
 
-  @Column({ name: 'is_delete', default: false })
-  isDelete: boolean;
+  @Column({ type: 'tinyint', default: 0 })
+  isDelete: number;
 
   // 关联关系
   @OneToMany(() => App, (app) => app.user)

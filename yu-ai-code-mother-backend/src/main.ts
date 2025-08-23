@@ -11,6 +11,8 @@ import * as compression from 'compression';
 import rateLimit from 'express-rate-limit';
  // eslint-disable-next-line @typescript-eslint/no-var-requires
 const slowDown = require('express-slow-down');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const session = require('express-session');
 import { AppModule } from './app.module';
 import { WinstonLogger } from './common/logger/winston.logger';
 
@@ -22,6 +24,20 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
   const winstonLogger = new WinstonLogger(configService);
   app.useLogger(winstonLogger);
+
+  // Session 配置（在其他中间件之前）
+  app.use(
+    session({
+      secret: configService.get('SESSION_SECRET', 'your-session-secret-key'),
+      resave: false,
+      saveUninitialized: false,
+      cookie: {
+        secure: process.env.NODE_ENV === 'production', // 生产环境使用HTTPS
+        httpOnly: true,
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7天
+      },
+    }),
+  );
 
   // 安全中间件
   app.use(helmet());
