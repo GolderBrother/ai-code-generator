@@ -19,6 +19,13 @@ import { UsersModule } from './modules/users/users.module';
 import { AppsModule } from './modules/apps/apps.module';
 import { AiModule } from './modules/ai/ai.module';
 import { ChatModule } from './modules/chat/chat.module';
+import { StaticModule } from './modules/static/static.module';
+import { WorkflowModule } from './modules/workflow/workflow.module';
+import { LanggraphModule } from './modules/langgraph/langgraph.module';
+import { MonitorModule } from './modules/monitor/monitor.module';
+import { RateLimiterModule } from './modules/rate-limiter/rate-limiter.module';
+import { ProjectModule } from './modules/project/project.module';
+import { ExceptionModule } from './modules/exception/exception.module';
 import { AppController } from './app.controller';
 
 @Module({
@@ -58,6 +65,13 @@ import { AppController } from './app.controller';
     AppsModule,
     AiModule,
     ChatModule,
+    StaticModule,
+    WorkflowModule,
+    LanggraphModule,
+    MonitorModule,
+    RateLimiterModule,
+    ProjectModule,
+    ExceptionModule,
   ],
   controllers: [AppController],
   providers: [],

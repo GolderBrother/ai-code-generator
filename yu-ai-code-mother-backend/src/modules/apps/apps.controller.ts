@@ -21,98 +21,60 @@ import { CreateAppDto } from './dto/create-app.dto';
 import { UpdateAppDto } from './dto/update-app.dto';
 import { AppQueryDto } from './dto/app-query.dto';
 
-@Controller('apps')
-@UseGuards(JwtAuthGuard, RolesGuard)
+@Controller('app')
 export class AppsController {
   constructor(private readonly appsService: AppsService) {}
 
-  @Post()
-  @Roles('user', 'admin')
-  async createApp(@Body() createAppDto: CreateAppDto, @CurrentUser() user) {
-    const app = await this.appsService.createApp(createAppDto, user);
-    return {
-      code: 0,
-      data: app,
-      message: '应用创建成功',
-    };
-  }
-
-  @Get(':id')
-  async getAppById(@Param('id', ParseIntPipe) id: number) {
-    const app = await this.appsService.findAppById(id);
-    return {
-      code: 0,
-      data: app,
-      message: '获取应用成功',
-    };
-  }
-
-  @Get()
-  async getAppsByUserId(@Query() query: AppQueryDto, @CurrentUser() user) {
-    const apps = await this.appsService.findAppsByUserId(user.id, query);
-    const total = await this.appsService.countByUserId(user.id);
-    
-    return {
-      code: 0,
-      data: {
-        records: apps,
-        total,
-        size: query.pageSize,
-        current: query.current,
-      },
-      message: '获取应用列表成功',
-    };
-  }
-
-  @Put(':id')
-  @Roles('user', 'admin')
-  async updateApp(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() updateAppDto: UpdateAppDto,
-    @CurrentUser() user,
-  ) {
-    const app = await this.appsService.updateApp(id, updateAppDto, user);
-    return {
-      code: 0,
-      data: app,
-      message: '应用更新成功',
-    };
-  }
-
-  @Delete(':id')
-  @Roles('user', 'admin')
-  async deleteApp(@Param('id', ParseIntPipe) id: number, @CurrentUser() user) {
-    await this.appsService.deleteApp(id, user);
-    return {
-      code: 0,
-      message: '应用删除成功',
-    };
-  }
-
-  @Post(':id/deploy')
-  async deployApp(@Param('id', ParseIntPipe) id: number, @CurrentUser() user) {
-    const deployUrl = await this.appsService.deployApp(id, user);
-    return {
-      code: 0,
-      data: { deployUrl },
-      message: '应用部署成功',
-    };
-  }
-
-  // ========== 补充缺失的接口 ==========
-
-  // AI对话生成代码 (SSE流式)
-  @Sse('chat/gen/code')
+  /**
+   * AI对话生成代码 (SSE流式)
+   * @param appId 应用ID
+   * @param message 对话消息
+   * @param user 当前用户
+   * @returns SSE流式响应
+   */
+  @Get('chat/gen/code')
   @UseGuards(JwtAuthGuard)
   async chatToGenCode(
     @Query('appId') appId: number,
     @Query('message') message: string,
     @CurrentUser() user,
   ) {
+    if (!appId || appId <= 0) {
+      throw new Error('应用ID错误');
+    }
+    if (!message || message.trim() === '') {
+      throw new Error('提示词不能为空');
+    }
     return this.appsService.chatToGenCode(appId, message, user);
   }
 
-  // 下载应用代码
+  /**
+   * 应用部署
+   * @param deployRequest 部署请求
+   * @param user 当前用户
+   * @returns 部署URL
+   */
+  @Post('deploy')
+  @UseGuards(JwtAuthGuard)
+  async deployApp(@Body() deployRequest: { appId: number }, @CurrentUser() user) {
+    if (!deployRequest || !deployRequest.appId || deployRequest.appId <= 0) {
+      throw new Error('应用ID不能为空');
+    }
+    const deployUrl = await this.appsService.deployApp(deployRequest.appId, user);
+    return {
+      code: 0,
+      data: deployUrl,
+      message: '应用部署成功',
+    };
+  }
+
+  /**
+   * 下载应用代码
+   * @param appId 应用ID
+   * @param user 当前用户
+   * @param res 响应对象
+   * @returns 文件下载
+   */
   @Get('download/:appId')
   @UseGuards(JwtAuthGuard)
   async downloadAppCode(
@@ -120,27 +82,106 @@ export class AppsController {
     @CurrentUser() user,
     @Res() res: any,
   ) {
+    if (!appId || appId <= 0) {
+      throw new Error('应用ID无效');
+    }
     return this.appsService.downloadAppCode(appId, user, res);
   }
 
-  // 获取应用VO（脱敏后的应用信息）
-  @Get('get/vo/:id')
-  async getAppVOById(@Param('id', ParseIntPipe) id: number) {
+  /**
+   * 创建应用
+   * @param createAppDto 创建应用请求
+   * @param user 当前用户
+   * @returns 应用ID
+   */
+  @Post('add')
+  @UseGuards(JwtAuthGuard)
+  async addApp(@Body() createAppDto: CreateAppDto, @CurrentUser() user) {
+    if (!createAppDto) {
+      throw new Error('创建应用参数不能为空');
+    }
+    const appId = await this.appsService.createApp(createAppDto, user);
+    return {
+      code: 0,
+      data: appId,
+      message: '应用创建成功',
+    };
+  }
+
+  /**
+   * 更新应用（用户只能更新自己的应用名称）
+   * @param updateDto 更新请求
+   * @param user 当前用户
+   * @returns 更新结果
+   */
+  @Post('update')
+  @UseGuards(JwtAuthGuard)
+  async updateApp(@Body() updateDto: UpdateAppDto & { id: number }, @CurrentUser() user) {
+    if (!updateDto || !updateDto.id || updateDto.id <= 0) {
+      throw new Error('应用ID不能为空或无效');
+    }
+    const result = await this.appsService.updateApp(updateDto.id, updateDto, user);
+    return {
+      code: 0,
+      data: true,
+      message: '应用更新成功',
+    };
+  }
+
+  /**
+   * 删除应用（用户只能删除自己的应用）
+   * @param deleteRequest 删除请求
+   * @param user 当前用户
+   * @returns 删除结果
+   */
+  @Post('delete')
+  @UseGuards(JwtAuthGuard)
+  async deleteApp(@Body() deleteRequest: { id: number }, @CurrentUser() user) {
+    if (!deleteRequest || !deleteRequest.id || deleteRequest.id <= 0) {
+      throw new Error('参数错误：应用ID不能为空或无效');
+    }
+    const result = await this.appsService.deleteApp(deleteRequest.id, user);
+    return {
+      code: 0,
+      data: result,
+      message: '应用删除成功',
+    };
+  }
+
+  /**
+   * 根据id获取应用详情
+   * @param id 应用ID
+   * @returns 应用详情
+   */
+  @Get('get/vo')
+  async getAppVOById(@Query('id', ParseIntPipe) id: number) {
+    if (!id || id <= 0) {
+      throw new Error('应用ID参数错误');
+    }
     const appVO = await this.appsService.getAppVOById(id);
     return {
       code: 0,
       data: appVO,
-      message: '获取应用信息成功',
+      message: '获取应用详情成功',
     };
   }
 
-  // 分页获取我的应用列表
+  /**
+   * 分页获取当前用户创建的应用列表
+   * @param appQueryDto 查询请求
+   * @param user 当前用户
+   * @returns 应用列表
+   */
   @Post('my/list/page/vo')
   @UseGuards(JwtAuthGuard)
-  async listMyAppVOByPage(
-    @Body() appQueryDto: AppQueryDto,
-    @CurrentUser() user,
-  ) {
+  async listMyAppVOByPage(@Body() appQueryDto: AppQueryDto, @CurrentUser() user) {
+    if (!appQueryDto) {
+      throw new Error('查询参数不能为空');
+    }
+    // 限制每页最多 20 个
+    if (appQueryDto.pageSize && appQueryDto.pageSize > 20) {
+      throw new Error('每页最多查询 20 个应用');
+    }
     const result = await this.appsService.listMyAppVOByPage(appQueryDto, user);
     return {
       code: 0,
@@ -149,9 +190,20 @@ export class AppsController {
     };
   }
 
-  // 分页获取精选应用列表
+  /**
+   * 分页获取精选应用列表
+   * @param appQueryDto 查询请求
+   * @returns 精选应用列表
+   */
   @Post('good/list/page/vo')
   async listGoodAppVOByPage(@Body() appQueryDto: AppQueryDto) {
+    if (!appQueryDto) {
+      throw new Error('查询参数不能为空');
+    }
+    // 限制每页最多 20 个
+    if (appQueryDto.pageSize && appQueryDto.pageSize > 20) {
+      throw new Error('每页最多查询 20 个应用');
+    }
     const result = await this.appsService.listGoodAppVOByPage(appQueryDto);
     return {
       code: 0,
@@ -160,11 +212,18 @@ export class AppsController {
     };
   }
 
-  // 管理员删除应用
+  /**
+   * 管理员删除应用
+   * @param deleteRequest 删除请求
+   * @returns 删除结果
+   */
   @Post('admin/delete')
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('admin')
   async deleteAppByAdmin(@Body() deleteRequest: { id: number }) {
+    if (!deleteRequest || !deleteRequest.id || deleteRequest.id <= 0) {
+      throw new Error('参数错误：应用ID不能为空或无效');
+    }
     const result = await this.appsService.deleteAppByAdmin(deleteRequest.id);
     return {
       code: 0,
@@ -173,24 +232,38 @@ export class AppsController {
     };
   }
 
-  // 管理员更新应用
+  /**
+   * 管理员更新应用
+   * @param updateDto 更新请求
+   * @returns 更新结果
+   */
   @Post('admin/update')
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('admin')
   async updateAppByAdmin(@Body() updateDto: any) {
+    if (!updateDto || !updateDto.id || updateDto.id <= 0) {
+      throw new Error('应用ID不能为空或无效');
+    }
     const result = await this.appsService.updateAppByAdmin(updateDto);
     return {
       code: 0,
-      data: result,
+      data: true,
       message: '管理员更新应用成功',
     };
   }
 
-  // 管理员分页获取应用列表
+  /**
+   * 管理员分页获取应用列表
+   * @param appQueryDto 查询请求
+   * @returns 应用列表
+   */
   @Post('admin/list/page/vo')
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('admin')
   async listAppVOByPageByAdmin(@Body() appQueryDto: AppQueryDto) {
+    if (!appQueryDto) {
+      throw new Error('查询参数不能为空');
+    }
     const result = await this.appsService.listAppVOByPageByAdmin(appQueryDto);
     return {
       code: 0,
@@ -199,11 +272,18 @@ export class AppsController {
     };
   }
 
-  // 管理员获取应用详情
-  @Get('admin/get/vo/:id')
+  /**
+   * 管理员根据id获取应用详情
+   * @param id 应用ID
+   * @returns 应用详情
+   */
+  @Get('admin/get/vo')
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('admin')
-  async getAppVOByIdByAdmin(@Param('id', ParseIntPipe) id: number) {
+  async getAppVOByIdByAdmin(@Query('id', ParseIntPipe) id: number) {
+    if (!id || id <= 0) {
+      throw new Error('应用ID参数错误');
+    }
     const appVO = await this.appsService.getAppVOByIdByAdmin(id);
     return {
       code: 0,

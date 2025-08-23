@@ -2,14 +2,20 @@
 /* eslint-disable */
 import request from '@/request'
 
-/** 此处后端没有提供注释 GET /static/${param0}/&#42;&#42; */
+// 静态资源模块接口前缀
+const STATIC_PREFIX = '/static'
+
+/**
+ * 获取静态资源文件 - 公开接口
+ * @param params 部署密钥和文件路径参数
+ * @returns 静态资源文件内容
+ */
 export async function serveStaticResource(
-  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.serveStaticResourceParams,
   options?: { [key: string]: any }
 ) {
   const { deployKey: param0, ...queryParams } = params
-  return request<string>(`/static/${param0}/**`, {
+  return request<string>(`${STATIC_PREFIX}/${param0}/**`, {
     method: 'GET',
     params: { ...queryParams },
     ...(options || {}),

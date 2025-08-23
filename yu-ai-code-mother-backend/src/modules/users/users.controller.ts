@@ -9,108 +9,113 @@ import {
   Query,
   UseGuards,
   ParseIntPipe,
-} from '@nestjs/common';
-import { UsersService } from './users.service';
-import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
-import { RolesGuard } from '../../common/guards/roles.guard';
-import { Roles } from '../../common/decorators/roles.decorator';
-import { CurrentUser } from '../../common/decorators/current-user.decorator';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { UserQueryDto } from './dto/user-query.dto';
-import { LoginDto } from '../auth/dto/login.dto';
-import { RegisterDto } from '../auth/dto/register.dto';
+} from "@nestjs/common";
+import { UsersService } from "./users.service";
+import { JwtAuthGuard } from "../../common/guards/jwt-auth.guard";
+import { RolesGuard } from "../../common/guards/roles.guard";
+import { Roles } from "../../common/decorators/roles.decorator";
+import { CurrentUser } from "../../common/decorators/current-user.decorator";
+import { Public } from "../../common/decorators/public.decorator";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
+import { UserQueryDto } from "./dto/user-query.dto";
+import { LoginDto } from "../auth/dto/login.dto";
+import { RegisterDto } from "./dto/create-user.dto";
 
-@Controller('users')
+@Controller("users")
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   // 公开测试接口 - 不需要认证
-  @Get('test/public')
+  @Get("test/public")
   async testPublic() {
     return {
       code: 0,
       data: {
-        message: '这是一个公开的测试接口',
+        message: "这是一个公开的测试接口",
         timestamp: new Date().toISOString(),
-        status: 'success',
-        endpoint: '/api/users/test/public'
+        status: "success",
+        endpoint: "/api/users/test/public",
       },
-      message: '公开测试接口调用成功',
+      message: "公开测试接口调用成功",
     };
   }
 
   // 需要登录的测试接口 - 需要JWT认证
-  @Get('test/auth')
+  @Get("test/auth")
   @UseGuards(JwtAuthGuard)
   async testAuth(@CurrentUser() user) {
     return {
       code: 0,
       data: {
-        message: '这是一个需要认证的测试接口',
+        message: "这是一个需要认证的测试接口",
         user: {
           id: user.id,
           username: user.username,
           email: user.email,
-          roles: user.roles
+          roles: user.roles,
         },
         timestamp: new Date().toISOString(),
-        status: 'authenticated',
-        endpoint: '/api/users/test/auth'
+        status: "authenticated",
+        endpoint: "/api/users/test/auth",
       },
-      message: '认证测试接口调用成功',
+      message: "认证测试接口调用成功",
     };
   }
 
   // 需要用户权限的测试接口
-  @Get('test/user')
+  @Get("test/user")
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('user', 'admin')
+  @Roles("user", "admin")
   async testUserRole(@CurrentUser() user) {
     return {
       code: 0,
       data: {
-        message: '这是一个需要用户权限的测试接口',
+        message: "这是一个需要用户权限的测试接口",
         user: {
           id: user.id,
           username: user.username,
           email: user.email,
-          roles: user.roles
+          roles: user.roles,
         },
         timestamp: new Date().toISOString(),
-        status: 'user_authorized',
-        endpoint: '/api/users/test/user'
+        status: "user_authorized",
+        endpoint: "/api/users/test/user",
       },
-      message: '用户权限测试接口调用成功',
+      message: "用户权限测试接口调用成功",
     };
   }
 
   // 需要管理员权限的测试接口
-  @Get('test/admin')
+  @Get("test/admin")
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('admin')
+  @Roles("admin")
   async testAdminRole(@CurrentUser() user) {
     return {
       code: 0,
       data: {
-        message: '这是一个需要管理员权限的测试接口',
+        message: "这是一个需要管理员权限的测试接口",
         user: {
           id: user.id,
           username: user.username,
           email: user.email,
-          roles: user.roles
+          roles: user.roles,
         },
         timestamp: new Date().toISOString(),
-        status: 'admin_authorized',
-        endpoint: '/api/users/test/admin'
+        status: "admin_authorized",
+        endpoint: "/api/users/test/admin",
       },
-      message: '管理员权限测试接口调用成功',
+      message: "管理员权限测试接口调用成功",
     };
   }
 
   // ========== 核心业务接口 ==========
   
-  // 用户注册 - 公开接口
+  /**
+   * 用户注册 - 公开接口
+   * @param registerDto 用户注册请求
+   * @returns 注册结果
+   */
   @Post('register')
   async userRegister(@Body() registerDto: RegisterDto) {
     const result = await this.usersService.userRegister(registerDto);
@@ -121,81 +126,89 @@ export class UsersController {
     };
   }
 
-  // 用户登录 - 公开接口
-  @Post('login')
+  /**
+   * 用户登录 - 公开接口
+   * @param loginDto 用户登录请求
+   * @returns 脱敏后的用户登录信息
+   */
+  @Post("login")
   async userLogin(@Body() loginDto: LoginDto) {
     const result = await this.usersService.userLogin(loginDto);
     return {
       code: 0,
       data: result,
-      message: '用户登录成功',
+      message: "用户登录成功",
     };
   }
 
-  // 获取当前登录用户信息
-  @Get('get/login')
-  @UseGuards(JwtAuthGuard)
+  /**
+   * 获取当前登录用户信息 - 公开接口（用于检查登录状态）
+   * @param user 当前用户（可能为空）
+   * @returns 登录用户信息或null
+   */
+  @Get("get/login")
+  @Public()
   async getLoginUser(@CurrentUser() user) {
+    if (!user) {
+      return {
+        code: 0,
+        data: null,
+        message: "用户未登录",
+      };
+    }
     const userInfo = await this.usersService.getLoginUserVO(user);
     return {
       code: 0,
       data: userInfo,
-      message: '获取登录用户信息成功',
+      message: "获取登录用户信息成功",
     };
   }
 
-  // 用户注销
-  @Post('logout')
+  /**
+   * 用户注销
+   * @param user 当前用户
+   * @returns 注销结果
+   */
+  @Post("logout")
   @UseGuards(JwtAuthGuard)
   async userLogout(@CurrentUser() user) {
     const result = await this.usersService.userLogout(user.id);
     return {
       code: 0,
       data: result,
-      message: '用户注销成功',
+      message: "用户注销成功",
     };
   }
 
-  // 根据ID获取用户VO（脱敏后的用户信息）
-  @Get('get/vo/:id')
-  async getUserVOById(@Param('id', ParseIntPipe) id: number) {
-    const user = await this.usersService.findUserById(id);
-    const userVO = await this.usersService.getUserVO(user);
-    return {
-      code: 0,
-      data: userVO,
-      message: '获取用户信息成功',
-    };
-  }
-
-  // 分页获取用户列表（仅管理员）
-  @Post('list/page/vo')
+  /**
+   * 创建用户（仅管理员）
+   * @param createUserDto 创建用户请求
+   * @returns 用户ID
+   */
+  @Post('add')
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('admin')
-  async listUserVOByPage(@Body() userQueryDto: UserQueryDto) {
-    const result = await this.usersService.listUserVOByPage(userQueryDto);
-    return {
-      code: 0,
-      data: result,
-      message: '获取用户分页列表成功',
-    };
-  }
-
-  @Post()
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('admin')
-  async createUser(@Body() createUserDto: CreateUserDto) {
+  async addUser(@Body() createUserDto: CreateUserDto) {
     const user = await this.usersService.createUser(createUserDto);
     return {
       code: 0,
-      data: user,
+      data: user.id,
       message: '用户创建成功',
     };
   }
 
-  @Get(':id')
-  @UseGuards(JwtAuthGuard)
-  async getUserById(@Param('id', ParseIntPipe) id: number) {
+  /**
+   * 根据id获取用户（仅管理员）
+   * @param id 用户ID
+   * @returns 用户信息
+   */
+  @Get('get')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('admin')
+  async getUserById(@Query('id', ParseIntPipe) id: number) {
+    if (id <= 0) {
+      throw new Error('用户ID参数错误');
+    }
     const user = await this.usersService.findUserById(id);
     return {
       code: 0,
@@ -204,58 +217,82 @@ export class UsersController {
     };
   }
 
-  @Put(':id')
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('admin')
-  async updateUser(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() updateUserDto: UpdateUserDto,
-  ) {
-    const user = await this.usersService.updateUser(id, updateUserDto);
+  /**
+   * 根据ID获取用户VO（脱敏后的用户信息）
+   * @param id 用户ID
+   * @returns 脱敏后的用户信息
+   */
+  @Get("get/vo/:id")
+  async getUserVOById(@Param("id", ParseIntPipe) id: number) {
+    if (id <= 0) {
+      throw new Error('用户ID参数错误');
+    }
+    const user = await this.usersService.findUserById(id);
+    const userVO = await this.usersService.getUserVO(user);
     return {
       code: 0,
-      data: user,
+      data: userVO,
+      message: "获取用户信息成功",
+    };
+  }
+
+  /**
+   * 更新用户（仅管理员）
+   * @param updateUserDto 更新用户请求
+   * @returns 更新结果
+   */
+  @Post('update')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('admin')
+  async updateUser(@Body() updateUserDto: UpdateUserDto & { id: number }) {
+    if (!updateUserDto.id || updateUserDto.id <= 0) {
+      throw new Error('用户ID不能为空或无效');
+    }
+    const user = await this.usersService.updateUser(updateUserDto.id, updateUserDto);
+    return {
+      code: 0,
+      data: true,
       message: '用户更新成功',
     };
   }
 
-  @Delete(':id')
+  /**
+   * 删除用户（仅管理员）
+   * @param deleteRequest 删除请求
+   * @returns 删除结果
+   */
+  @Post("delete")
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('admin')
-  async deleteUser(@Param('id', ParseIntPipe) id: number) {
-    await this.usersService.deleteUser(id);
+  @Roles("admin")
+  async deleteUser(@Body() deleteRequest: { id: number }) {
+    if (!deleteRequest || !deleteRequest.id || deleteRequest.id <= 0) {
+      throw new Error("参数错误：用户ID不能为空或无效");
+    }
+    await this.usersService.deleteUser(deleteRequest.id);
     return {
       code: 0,
-      message: '用户删除成功',
+      data: true,
+      message: "用户删除成功",
     };
   }
 
-  @Get()
+  /**
+   * 分页获取用户封装列表（仅管理员）
+   * @param userQueryDto 查询请求参数
+   * @returns 用户分页列表
+   */
+  @Post("list/page/vo")
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('admin')
-  async getAllUsers(@Query() query: UserQueryDto) {
-    const users = await this.usersService.findAllUsers();
+  @Roles("admin")
+  async listUserVOByPage(@Body() userQueryDto: UserQueryDto) {
+    if (!userQueryDto) {
+      throw new Error('查询参数不能为空');
+    }
+    const result = await this.usersService.listUserVOByPage(userQueryDto);
     return {
       code: 0,
-      data: {
-        records: users,
-        total: users.length,
-        size: users.length,
-        current: 1,
-      },
-      message: '获取用户列表成功',
-    };
-  }
-
-  @Get('role/:role')
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('admin')
-  async getUsersByRole(@Param('role') role: string) {
-    const users = await this.usersService.findUsersByRole(role);
-    return {
-      code: 0,
-      data: users,
-      message: '获取用户列表成功',
+      data: result,
+      message: "获取用户分页列表成功",
     };
   }
 }

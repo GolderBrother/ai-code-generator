@@ -15,58 +15,45 @@ import { RolesGuard } from '../../common/guards/roles.guard';
 import { Roles } from '../../common/decorators/roles.decorator';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 
-@Controller('chat')
-@UseGuards(JwtAuthGuard, RolesGuard)
+@Controller('chatHistory')
 export class ChatController {
   constructor(private readonly chatService: ChatService) {}
 
-  @Get('history/:appId')
-  @Roles('user', 'admin')
-  async getChatHistory(
+  // 分页查询某个应用的对话历史（游标查询）
+  @Get('app/:appId')
+  @UseGuards(JwtAuthGuard)
+  async listAppChatHistory(
     @Param('appId', ParseIntPipe) appId: number,
-    @Query('limit') limit: number = 20,
-    @CurrentUser() user,
+    @Query('pageSize') pageSize: number = 10,
+    @Query('lastCreateTime') lastCreateTime: string = '',
+    @CurrentUser() user: any,
   ) {
-    const history = await this.chatService.getChatHistoryByAppId(appId, limit);
+    const result = await this.chatService.listAppChatHistoryByPage(
+      appId,
+      pageSize,
+      lastCreateTime ? new Date(lastCreateTime) : undefined,
+      user
+    );
     return {
       code: 0,
-      data: history,
-      message: '获取聊天历史成功',
+      data: result,
+      message: '获取应用对话历史成功',
     };
   }
 
-  @Get('history/user/:userId')
+  // 管理员分页查询所有对话历史
+  @Post('admin/list/page/vo')
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('admin')
-  async getUserChatHistory(
-    @Param('userId', ParseIntPipe) userId: number,
-    @Query('limit') limit: number = 20,
-  ) {
-    const history = await this.chatService.getChatHistoryByUserId(userId, limit);
+  async listAllChatHistoryByPageForAdmin(@Body() chatHistoryQueryRequest: any) {
+    if (!chatHistoryQueryRequest) {
+      throw new Error('查询参数不能为空');
+    }
+    const result = await this.chatService.listAllChatHistoryByPageForAdmin(chatHistoryQueryRequest);
     return {
       code: 0,
-      data: history,
-      message: '获取用户聊天历史成功',
-    };
-  }
-
-  @Delete('message/:id')
-  @Roles('user', 'admin')
-  async deleteChatMessage(@Param('id', ParseIntPipe) id: number, @CurrentUser() user) {
-    await this.chatService.deleteChatMessage(id);
-    return {
-      code: 0,
-      message: '删除聊天记录成功',
-    };
-  }
-
-  @Get('count/:appId')
-  @Roles('user', 'admin')
-  async getChatMessageCount(@Param('appId', ParseIntPipe) appId: number, @CurrentUser() user) {
-    const count = await this.chatService.getChatMessageCount(appId);
-    return {
-      code: 0,
-      data: { count },
-      message: '获取聊天记录数量成功',
+      data: result,
+      message: '管理员获取对话历史成功',
     };
   }
 }

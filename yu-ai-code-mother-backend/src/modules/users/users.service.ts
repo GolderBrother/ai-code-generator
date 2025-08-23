@@ -2,7 +2,7 @@ import { Injectable, ConflictException, NotFoundException, UnauthorizedException
 import { UserRepository } from './repositories/user.repository';
 import { User } from './entities/user.entity';
 import { LoginDto } from '../auth/dto/login.dto';
-import { RegisterDto } from '../auth/dto/register.dto';
+import { RegisterDto } from './dto/create-user.dto';
 import { UserQueryDto } from './dto/user-query.dto';
 import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';

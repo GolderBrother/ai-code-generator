@@ -25,3 +25,26 @@ export class CreateUserDto {
   @IsString()
   userRole?: string;
 }
+
+export class RegisterDto {
+  @IsString()
+  @MinLength(4)
+  @MaxLength(50)
+  userAccount: string;
+
+  @IsString()
+  @MinLength(6)
+  @MaxLength(100)
+  userPassword: string;
+
+  @IsString()
+  @MinLength(6)
+  @MaxLength(100)
+  checkPassword: string;
+
+  @IsOptional()
+  @IsString()
+  @MinLength(2)
+  @MaxLength(50)
+  userName?: string;
+}
