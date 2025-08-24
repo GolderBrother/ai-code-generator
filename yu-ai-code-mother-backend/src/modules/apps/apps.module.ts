@@ -4,6 +4,7 @@ import { CacheModule } from '@nestjs/cache-manager';
 import { AppsController } from './apps.controller';
 import { AppsService } from './apps.service';
 import { App } from './entities/app.entity';
+import { User } from '../users/entities/user.entity';
 import { AppRepository } from './repositories/app.repository';
 import { AiModule } from '../ai/ai.module';
 import { ChatHistoryModule } from '../chat-history/chat-history.module';
@@ -11,7 +12,7 @@ import { UsersModule } from '../users/users.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([App]),
+    TypeOrmModule.forFeature([App, User]),
     CacheModule.register(),
     AiModule,
     ChatHistoryModule,

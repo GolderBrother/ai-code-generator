@@ -40,6 +40,7 @@ export class AppsController {
    * @returns SSE流式响应
    */
   @Get('chat/gen/code')
+  @Sse()
   async chatToGenCode(
     @Query('appId', ParseIntPipe) appId: number,
     @Query('message') message: string,

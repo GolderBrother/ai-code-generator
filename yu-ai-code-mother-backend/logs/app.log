@@ -8203,3 +8203,820 @@
 {"context":"NestApplication","level":"info","message":"Nest application successfully started","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 11:58:42"}
 {"context":"GlobalExceptionFilter","level":"error","message":"HTTP 401 Error: 用户未认证","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 11:58:54","trace":"{\"url\":\"/api/users/get/login\",\"method\":\"GET\",\"ip\":\"::1\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36\",\"body\":{},\"query\":{},\"params\":{}}"}
 {"context":"GlobalExceptionFilter","level":"error","message":"HTTP 401 Error: 用户未认证","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 11:58:56","trace":"{\"url\":\"/api/users/get/login\",\"method\":\"GET\",\"ip\":\"::1\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36\",\"body\":{},\"query\":{},\"params\":{}}"}
+{"context":"RoutesResolver","level":"info","message":"AppController {/api}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RoutesResolver","level":"info","message":"HealthController {/api/health}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/health, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/api/auth}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/login, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/register, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/profile, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/admin/profile, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RoutesResolver","level":"info","message":"UsersController {/api/users}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/public, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/auth, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/user, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/admin, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/register, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/login, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get/login, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/logout, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get/vo/:id, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RoutesResolver","level":"info","message":"AppsController {/api/app}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/chat/gen/code, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/deploy, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/download/:appId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/get/vo, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/my/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/good/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/get/vo, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RoutesResolver","level":"info","message":"AiController {/api/ai}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/generate/html, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/generate/multi-file, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/usage/:userId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/my-usage, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RoutesResolver","level":"info","message":"ChatHistoryController {/api/chatHistory}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/get, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/list/page, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/my/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/app/:appId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RoutesResolver","level":"info","message":"StaticController {/api/static}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/static/:deployKey/*path, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RoutesResolver","level":"info","message":"WorkflowController {/api/workflow}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute-flux, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute-sse, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RoutesResolver","level":"info","message":"LangGraphController {/api/langgraph}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-concurrent, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-subgraph, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-flux, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-sse, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/graph, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/status/:workflowId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"NestApplication","level":"info","message":"Nest application successfully started","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:10"}
+{"context":"GlobalExceptionFilter","level":"error","message":"HTTP 401 Error: 用户未认证","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:16","trace":"{\"url\":\"/api/users/get/login\",\"method\":\"GET\",\"ip\":\"::1\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36\",\"body\":{},\"query\":{},\"params\":{}}"}
+{"context":"GlobalExceptionFilter","level":"error","message":"HTTP 401 Error: 用户未认证","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:07:19","trace":"{\"url\":\"/api/users/get/login\",\"method\":\"GET\",\"ip\":\"::1\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36\",\"body\":{},\"query\":{},\"params\":{}}"}
+{"context":"RoutesResolver","level":"info","message":"AppController {/api}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RoutesResolver","level":"info","message":"HealthController {/api/health}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/health, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/api/auth}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/login, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/register, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/profile, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/admin/profile, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RoutesResolver","level":"info","message":"UsersController {/api/users}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/public, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/auth, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/user, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/admin, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/register, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/login, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get/login, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/logout, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get/vo/:id, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RoutesResolver","level":"info","message":"AppsController {/api/app}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/chat/gen/code, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/deploy, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/download/:appId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/get/vo, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/my/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/good/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/get/vo, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RoutesResolver","level":"info","message":"AiController {/api/ai}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/generate/html, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/generate/multi-file, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/usage/:userId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/my-usage, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RoutesResolver","level":"info","message":"ChatHistoryController {/api/chatHistory}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/get, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/list/page, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/my/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/app/:appId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RoutesResolver","level":"info","message":"StaticController {/api/static}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/static/:deployKey/*path, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RoutesResolver","level":"info","message":"WorkflowController {/api/workflow}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute-flux, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute-sse, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RoutesResolver","level":"info","message":"LangGraphController {/api/langgraph}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-concurrent, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-subgraph, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-flux, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-sse, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/graph, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/status/:workflowId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"NestApplication","level":"info","message":"Nest application successfully started","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:23:59"}
+{"context":"RoutesResolver","level":"info","message":"AppController {/api}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RoutesResolver","level":"info","message":"HealthController {/api/health}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/health, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/api/auth}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/login, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/register, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/profile, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/admin/profile, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RoutesResolver","level":"info","message":"UsersController {/api/users}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/public, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/auth, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/user, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/admin, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/register, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/login, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get/login, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/logout, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get/vo/:id, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RoutesResolver","level":"info","message":"AppsController {/api/app}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/chat/gen/code, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/deploy, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/download/:appId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/get/vo, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/my/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/good/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/get/vo, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RoutesResolver","level":"info","message":"AiController {/api/ai}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/generate/html, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/generate/multi-file, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/usage/:userId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/my-usage, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RoutesResolver","level":"info","message":"ChatHistoryController {/api/chatHistory}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/get, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/list/page, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/my/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/app/:appId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RoutesResolver","level":"info","message":"StaticController {/api/static}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/static/:deployKey/*path, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RoutesResolver","level":"info","message":"WorkflowController {/api/workflow}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute-flux, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute-sse, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RoutesResolver","level":"info","message":"LangGraphController {/api/langgraph}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-concurrent, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-subgraph, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-flux, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-sse, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/graph, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/status/:workflowId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"NestApplication","level":"info","message":"Nest application successfully started","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:37"}
+{"context":"GlobalExceptionFilter","level":"error","message":"HTTP 401 Error: 用户未认证","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:50","trace":"{\"url\":\"/api/users/get/login\",\"method\":\"GET\",\"ip\":\"::1\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36\",\"body\":{},\"query\":{},\"params\":{}}"}
+{"context":"GlobalExceptionFilter","level":"error","message":"HTTP 401 Error: 用户未认证","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:51","trace":"{\"url\":\"/api/chatHistory/app/10?pageSize=10\",\"method\":\"GET\",\"ip\":\"::1\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36\",\"body\":{},\"query\":{\"pageSize\":\"10\"},\"params\":{\"appId\":\"10\"}}"}
+{"context":"GlobalExceptionFilter","level":"error","message":"HTTP 401 Error: 用户未认证","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:28:53","trace":"{\"url\":\"/api/users/get/login\",\"method\":\"GET\",\"ip\":\"::1\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36\",\"body\":{},\"query\":{},\"params\":{}}"}
+{"context":"RoutesResolver","level":"info","message":"AppController {/api}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RoutesResolver","level":"info","message":"HealthController {/api/health}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/health, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/api/auth}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/login, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/register, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/profile, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/admin/profile, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RoutesResolver","level":"info","message":"UsersController {/api/users}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/public, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/auth, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/user, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/admin, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/register, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/login, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get/login, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/logout, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get/vo/:id, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RoutesResolver","level":"info","message":"AppsController {/api/app}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/chat/gen/code, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/deploy, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/download/:appId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/get/vo, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/my/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/good/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/get/vo, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RoutesResolver","level":"info","message":"AiController {/api/ai}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/generate/html, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/generate/multi-file, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/usage/:userId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/my-usage, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RoutesResolver","level":"info","message":"ChatHistoryController {/api/chatHistory}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/get, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/list/page, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/my/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/app/:appId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RoutesResolver","level":"info","message":"StaticController {/api/static}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/static/:deployKey/*path, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RoutesResolver","level":"info","message":"WorkflowController {/api/workflow}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute-flux, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute-sse, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RoutesResolver","level":"info","message":"LangGraphController {/api/langgraph}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-concurrent, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-subgraph, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-flux, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-sse, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/graph, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/status/:workflowId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"NestApplication","level":"info","message":"Nest application successfully started","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:37:09"}
+{"context":"RoutesResolver","level":"info","message":"AppController {/api}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RoutesResolver","level":"info","message":"HealthController {/api/health}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/health, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/api/auth}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/login, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/register, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/profile, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/admin/profile, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RoutesResolver","level":"info","message":"UsersController {/api/users}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/public, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/auth, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/user, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/admin, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/register, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/login, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get/login, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/logout, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get/vo/:id, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RoutesResolver","level":"info","message":"AppsController {/api/app}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/chat/gen/code, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/deploy, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/download/:appId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/get/vo, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/my/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/good/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/get/vo, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RoutesResolver","level":"info","message":"AiController {/api/ai}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/generate/html, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/generate/multi-file, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/usage/:userId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/my-usage, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RoutesResolver","level":"info","message":"ChatHistoryController {/api/chatHistory}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/get, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/list/page, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/my/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/app/:appId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RoutesResolver","level":"info","message":"StaticController {/api/static}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/static/:deployKey/*path, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RoutesResolver","level":"info","message":"WorkflowController {/api/workflow}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute-flux, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute-sse, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RoutesResolver","level":"info","message":"LangGraphController {/api/langgraph}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-concurrent, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-subgraph, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-flux, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-sse, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/graph, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/status/:workflowId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"NestApplication","level":"info","message":"Nest application successfully started","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:40:38"}
+{"context":"RoutesResolver","level":"info","message":"AppController {/api}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RoutesResolver","level":"info","message":"HealthController {/api/health}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/health, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/api/auth}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/login, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/register, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/profile, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/admin/profile, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RoutesResolver","level":"info","message":"UsersController {/api/users}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/public, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/auth, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/user, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/admin, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/register, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/login, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get/login, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/logout, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get/vo/:id, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RoutesResolver","level":"info","message":"AppsController {/api/app}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/chat/gen/code, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/deploy, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/download/:appId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/get/vo, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/my/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/good/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/get/vo, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RoutesResolver","level":"info","message":"AiController {/api/ai}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/generate/html, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/generate/multi-file, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/usage/:userId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/my-usage, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RoutesResolver","level":"info","message":"ChatHistoryController {/api/chatHistory}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/get, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/list/page, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/my/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/app/:appId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RoutesResolver","level":"info","message":"StaticController {/api/static}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/static/:deployKey/*path, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RoutesResolver","level":"info","message":"WorkflowController {/api/workflow}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute-flux, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute-sse, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RoutesResolver","level":"info","message":"LangGraphController {/api/langgraph}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-concurrent, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-subgraph, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-flux, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-sse, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/graph, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/status/:workflowId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"NestApplication","level":"info","message":"Nest application successfully started","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:21"}
+{"context":"RoutesResolver","level":"info","message":"AppController {/api}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RoutesResolver","level":"info","message":"HealthController {/api/health}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/health, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/api/auth}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/login, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/register, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/profile, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/admin/profile, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RoutesResolver","level":"info","message":"UsersController {/api/users}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/public, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/auth, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/user, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/admin, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/register, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/login, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get/login, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/logout, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get/vo/:id, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RoutesResolver","level":"info","message":"AppsController {/api/app}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/chat/gen/code, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/deploy, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/download/:appId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/get/vo, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/my/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/good/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/get/vo, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RoutesResolver","level":"info","message":"AiController {/api/ai}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/generate/html, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/generate/multi-file, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/usage/:userId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/my-usage, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RoutesResolver","level":"info","message":"ChatHistoryController {/api/chatHistory}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/get, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/list/page, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/my/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/app/:appId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RoutesResolver","level":"info","message":"StaticController {/api/static}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/static/:deployKey/*path, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RoutesResolver","level":"info","message":"WorkflowController {/api/workflow}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute-flux, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute-sse, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RoutesResolver","level":"info","message":"LangGraphController {/api/langgraph}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-concurrent, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-subgraph, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-flux, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-sse, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/graph, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/status/:workflowId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"NestApplication","level":"info","message":"Nest application successfully started","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:44"}
+{"context":"RoutesResolver","level":"info","message":"AppController {/api}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RoutesResolver","level":"info","message":"HealthController {/api/health}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/health, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/api/auth}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/login, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/register, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/profile, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/admin/profile, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RoutesResolver","level":"info","message":"UsersController {/api/users}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/public, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/auth, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/user, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/admin, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/register, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/login, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get/login, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/logout, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get/vo/:id, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RoutesResolver","level":"info","message":"AppsController {/api/app}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/chat/gen/code, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/deploy, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/download/:appId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/get/vo, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/my/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/good/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/get/vo, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RoutesResolver","level":"info","message":"AiController {/api/ai}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/generate/html, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/generate/multi-file, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/usage/:userId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/my-usage, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RoutesResolver","level":"info","message":"ChatHistoryController {/api/chatHistory}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/get, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/list/page, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/my/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/app/:appId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RoutesResolver","level":"info","message":"StaticController {/api/static}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/static/:deployKey/*path, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RoutesResolver","level":"info","message":"WorkflowController {/api/workflow}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute-flux, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute-sse, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RoutesResolver","level":"info","message":"LangGraphController {/api/langgraph}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-concurrent, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-subgraph, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-flux, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-sse, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/graph, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/status/:workflowId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"NestApplication","level":"info","message":"Nest application successfully started","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 12:42:52"}
+{"context":"RoutesResolver","level":"info","message":"AppController {/api}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RoutesResolver","level":"info","message":"HealthController {/api/health}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/health, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/api/auth}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/login, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/register, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/profile, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/admin/profile, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RoutesResolver","level":"info","message":"UsersController {/api/users}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/public, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/auth, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/user, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/admin, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/register, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/login, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get/login, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/logout, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get/vo/:id, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RoutesResolver","level":"info","message":"AppsController {/api/app}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/chat/gen/code, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/deploy, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/download/:appId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/get/vo, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/my/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/good/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/get/vo, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RoutesResolver","level":"info","message":"AiController {/api/ai}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/generate/html, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/generate/multi-file, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/usage/:userId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/my-usage, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RoutesResolver","level":"info","message":"ChatHistoryController {/api/chatHistory}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/get, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/list/page, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/my/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/app/:appId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RoutesResolver","level":"info","message":"StaticController {/api/static}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/static/:deployKey/*path, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RoutesResolver","level":"info","message":"WorkflowController {/api/workflow}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute-flux, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute-sse, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RoutesResolver","level":"info","message":"LangGraphController {/api/langgraph}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-concurrent, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-subgraph, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-flux, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-sse, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/graph, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/status/:workflowId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"NestApplication","level":"info","message":"Nest application successfully started","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:16"}
+{"context":"GlobalExceptionFilter","level":"error","message":"HTTP 401 Error: 用户未认证","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:34","trace":"{\"url\":\"/api/users/get/login\",\"method\":\"GET\",\"ip\":\"::1\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36\",\"body\":{},\"query\":{},\"params\":{}}"}
+{"context":"GlobalExceptionFilter","level":"error","message":"HTTP 401 Error: 用户未认证","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:35","trace":"{\"url\":\"/api/chatHistory/app/11?pageSize=10\",\"method\":\"GET\",\"ip\":\"::1\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36\",\"body\":{},\"query\":{\"pageSize\":\"10\"},\"params\":{\"appId\":\"11\"}}"}
+{"context":"GlobalExceptionFilter","level":"error","message":"HTTP 401 Error: 用户未认证","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:17:37","trace":"{\"url\":\"/api/users/get/login\",\"method\":\"GET\",\"ip\":\"::1\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36\",\"body\":{},\"query\":{},\"params\":{}}"}
+{"context":"RoutesResolver","level":"info","message":"AppController {/api}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RoutesResolver","level":"info","message":"HealthController {/api/health}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/health, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/api/auth}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/login, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/register, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/profile, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/admin/profile, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RoutesResolver","level":"info","message":"UsersController {/api/users}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/public, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/auth, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/user, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/admin, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/register, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/login, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get/login, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/logout, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get/vo/:id, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RoutesResolver","level":"info","message":"AppsController {/api/app}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/chat/gen/code, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/deploy, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/download/:appId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/get/vo, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/my/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/good/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/get/vo, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RoutesResolver","level":"info","message":"AiController {/api/ai}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/generate/html, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/generate/multi-file, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/usage/:userId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/my-usage, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RoutesResolver","level":"info","message":"ChatHistoryController {/api/chatHistory}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/get, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/list/page, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/my/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/app/:appId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RoutesResolver","level":"info","message":"StaticController {/api/static}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/static/:deployKey/*path, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RoutesResolver","level":"info","message":"WorkflowController {/api/workflow}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute-flux, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute-sse, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RoutesResolver","level":"info","message":"LangGraphController {/api/langgraph}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-concurrent, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-subgraph, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-flux, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-sse, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/graph, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/status/:workflowId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"NestApplication","level":"info","message":"Nest application successfully started","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:20:53"}
+{"context":"RoutesResolver","level":"info","message":"AppController {/api}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RoutesResolver","level":"info","message":"HealthController {/api/health}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/health, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/api/auth}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/login, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/register, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/profile, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/admin/profile, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RoutesResolver","level":"info","message":"UsersController {/api/users}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/public, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/auth, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/user, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/admin, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/register, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/login, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get/login, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/logout, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get/vo/:id, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RoutesResolver","level":"info","message":"AppsController {/api/app}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/chat/gen/code, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/deploy, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/download/:appId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/get/vo, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/my/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/good/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/get/vo, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RoutesResolver","level":"info","message":"AiController {/api/ai}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/generate/html, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/generate/multi-file, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/usage/:userId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/my-usage, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RoutesResolver","level":"info","message":"ChatHistoryController {/api/chatHistory}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/get, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/list/page, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/my/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/app/:appId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RoutesResolver","level":"info","message":"StaticController {/api/static}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/static/:deployKey/*path, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RoutesResolver","level":"info","message":"WorkflowController {/api/workflow}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute-flux, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute-sse, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RoutesResolver","level":"info","message":"LangGraphController {/api/langgraph}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-concurrent, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-subgraph, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-flux, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-sse, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/graph, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/status/:workflowId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"NestApplication","level":"info","message":"Nest application successfully started","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:21:36"}
+{"context":"RoutesResolver","level":"info","message":"AppController {/api}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RoutesResolver","level":"info","message":"HealthController {/api/health}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/health, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/api/auth}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/login, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/register, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/profile, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/auth/admin/profile, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RoutesResolver","level":"info","message":"UsersController {/api/users}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/public, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/auth, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/user, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/test/admin, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/register, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/login, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get/login, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/logout, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/get/vo/:id, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/users/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RoutesResolver","level":"info","message":"AppsController {/api/app}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/chat/gen/code, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/deploy, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/download/:appId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/get/vo, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/my/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/good/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/app/admin/get/vo, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RoutesResolver","level":"info","message":"AiController {/api/ai}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/generate/html, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/generate/multi-file, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/usage/:userId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/ai/my-usage, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RoutesResolver","level":"info","message":"ChatHistoryController {/api/chatHistory}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/add, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/delete, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/update, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/get, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/list/page, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/my/list/page/vo, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/chatHistory/app/:appId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RoutesResolver","level":"info","message":"StaticController {/api/static}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/static/:deployKey/*path, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RoutesResolver","level":"info","message":"WorkflowController {/api/workflow}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute-flux, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/workflow/execute-sse, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RoutesResolver","level":"info","message":"LangGraphController {/api/langgraph}:","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-concurrent, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-subgraph, POST} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-flux, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/execute-sse, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/graph, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/langgraph/status/:workflowId, GET} route","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"NestApplication","level":"info","message":"Nest application successfully started","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:23"}
+{"context":"GlobalExceptionFilter","level":"error","message":"HTTP 401 Error: 用户未认证","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:24","trace":"{\"url\":\"/api/app/chat/gen/code?appId=12&message=%E7%94%9F%E6%88%90%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99\",\"method\":\"GET\",\"ip\":\"::1\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36\",\"body\":{},\"query\":{\"appId\":\"12\",\"message\":\"生成个人博客网站\"},\"params\":{}}"}
+{"context":"GlobalExceptionFilter","level":"error","message":"HTTP 401 Error: 用户未认证","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:36","trace":"{\"url\":\"/api/app/chat/gen/code?appId=12&message=%E7%94%9F%E6%88%90%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99\",\"method\":\"GET\",\"ip\":\"::1\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36\",\"body\":{},\"query\":{\"appId\":\"12\",\"message\":\"生成个人博客网站\"},\"params\":{}}"}
+{"context":"GlobalExceptionFilter","level":"error","message":"HTTP 401 Error: 用户未登录","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:41","trace":"{\"url\":\"/api/users/logout\",\"method\":\"POST\",\"ip\":\"::1\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36\",\"body\":{},\"query\":{},\"params\":{}}"}
+{"context":"GlobalExceptionFilter","level":"error","message":"HTTP 401 Error: 用户未认证","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:43","trace":"{\"url\":\"/api/users/get/login\",\"method\":\"GET\",\"ip\":\"::1\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36\",\"body\":{},\"query\":{},\"params\":{}}"}
+{"context":"GlobalExceptionFilter","level":"error","message":"HTTP 404 Error: Cannot GET /api/static/html_13/","service":"yu-ai-code-mother-backend","timestamp":"2025-08-24 13:23:58","trace":"{\"url\":\"/api/static/html_13/\",\"method\":\"GET\",\"ip\":\"::1\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36\",\"body\":{},\"query\":{},\"params\":{}}"}
