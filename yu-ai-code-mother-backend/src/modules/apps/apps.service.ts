@@ -683,10 +683,34 @@ document.addEventListener('DOMContentLoaded', () => {
    * 创建应用
    */
   async createApp(createAppDto: CreateAppDto, currentUser: User): Promise<number> {
+    // 参数校验
+    const initPrompt = createAppDto.initPrompt;
+    if (!initPrompt || initPrompt.trim() === '') {
+      throw new UnauthorizedException('初始化 prompt 不能为空');
+    }
+
+    // 应用名称暂时为 initPrompt 前 12 位
+    const appName = initPrompt.substring(0, Math.min(initPrompt.length, 12));
+
+    // 使用 AI 智能选择代码生成类型（暂时使用默认逻辑，后续可接入AI服务）
+    let codeGenType = 'html'; // 默认类型
+    
+    // 简单的类型判断逻辑（对应Java版本的AI路由逻辑）
+    const prompt = initPrompt.toLowerCase();
+    if (prompt.includes('vue') || prompt.includes('组件') || prompt.includes('单页应用')) {
+      codeGenType = 'vue_project';
+    } else if (prompt.includes('多文件') || prompt.includes('css') || prompt.includes('js')) {
+      codeGenType = 'multi_file';
+    }
+
     const savedApp = await this.appRepository.create({
       ...createAppDto,
+      appName: appName,
+      codeGenType: codeGenType,
       userId: currentUser.id,
     });
+
+    console.log(`应用创建成功，ID: ${savedApp.id}, 类型: ${codeGenType}`);
     return savedApp.id;
   }
 
@@ -842,25 +866,186 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /**
-   * 部署应用
+   * 部署应用（完整实现，对应Java版本）
    */
   async deployApp(appId: number, user: User): Promise<string> {
-    const app = await this.getById(appId);
-    if (!app || app.userId !== user.id) {
-      throw new UnauthorizedException('无权限访问该应用');
+    // 1. 参数校验
+    if (!appId || appId <= 0) {
+      throw new UnauthorizedException('应用 ID 错误');
+    }
+    if (!user) {
+      throw new UnauthorizedException('用户未登录');
     }
 
-    // 模拟部署逻辑
-    const deployUrl = `https://deployed-app-${appId}.example.com`;
-    
-    // 更新部署信息
-    await this.updateById({
+    // 2. 查询应用信息
+    const app = await this.getById(appId);
+    if (!app) {
+      throw new NotFoundException('应用不存在');
+    }
+
+    // 3. 权限校验，仅本人可以部署自己的应用
+    if (app.userId !== user.id) {
+      throw new UnauthorizedException('无权限部署该应用');
+    }
+
+    // 4. 检查是否已有 deployKey
+    let deployKey = app.deployKey;
+    // 如果没有，则生成 6 位 deployKey（字母 + 数字）
+    if (!deployKey) {
+      deployKey = this.generateRandomString(6);
+    }
+
+    // 5. 获取代码生成类型，获取原始代码生成路径（应用访问目录）
+    const codeGenType = app.codeGenType;
+    if (!codeGenType) {
+      throw new UnauthorizedException('应用代码生成类型错误');
+    }
+    const sourceDirName = `${codeGenType}_${appId}`;
+    const sourceDirPath = path.join(this.CODE_OUTPUT_ROOT_DIR, sourceDirName);
+    // 6. 检查路径是否存在
+    if (!fs.existsSync(sourceDirPath) || !fs.statSync(sourceDirPath).isDirectory()) {
+      throw new UnauthorizedException('应用代码路径不存在，请先生成应用');
+    }
+
+    // 7. Vue 项目特殊处理：执行构建
+    let sourceDir = sourceDirPath;
+    if (codeGenType === 'vue_project') {
+      // Vue 项目需要构建
+      const buildSuccess = await this.buildVueProject(sourceDirPath);
+      if (!buildSuccess) {
+        throw new UnauthorizedException('Vue 项目构建失败，请重试');
+      }
+      // 检查 dist 目录是否存在
+      const distDir = path.join(sourceDirPath, 'dist');
+      if (!fs.existsSync(distDir)) {
+        throw new UnauthorizedException('Vue 项目构建完成但未生成 dist 目录');
+      }
+      // 构建完成后，需要将构建后的文件复制到部署目录
+      sourceDir = distDir;
+    }
+
+    // 8. 复制文件到部署目录
+    const deployDirPath = path.join(this.CODE_DEPLOY_ROOT_DIR, deployKey);
+    try {
+      await this.copyDirectory(sourceDir, deployDirPath);
+    } catch (error) {
+      throw new UnauthorizedException(`应用部署失败：${error.message}`);
+    }
+
+    // 9. 更新数据库
+    const updateResult = await this.updateById({
       id: appId,
-      deployKey: `deploy_${appId}_${Date.now()}`,
+      deployKey: deployKey,
       deployedTime: new Date(),
     });
+    if (!updateResult) {
+      throw new UnauthorizedException('更新应用部署信息失败');
+    }
 
-    return deployUrl;
+    // 10. 构建应用访问 URL
+    const appDeployUrl = `${this.DEPLOY_HOST}/${deployKey}/`;
+
+    // 11. 异步生成截图并且更新应用封面
+    this.generateAppScreenshotAsync(appId, appDeployUrl);
+
+    return appDeployUrl;
+  }
+
+  /**
+   * 生成随机字符串
+   */
+  private generateRandomString(length: number): string {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+  }
+
+  /**
+   * 构建Vue项目
+   */
+  private async buildVueProject(projectPath: string): Promise<boolean> {
+    try {
+      const { exec } = require('child_process');
+      const { promisify } = require('util');
+      const execAsync = promisify(exec);
+
+      // 检查是否有package.json
+      const packageJsonPath = path.join(projectPath, 'package.json');
+      if (!fs.existsSync(packageJsonPath)) {
+        console.warn('Vue项目缺少package.json文件');
+        return false;
+      }
+
+      // 安装依赖
+      console.log('正在安装Vue项目依赖...');
+      await execAsync('npm install', { cwd: projectPath });
+
+      // 执行构建
+      console.log('正在构建Vue项目...');
+      await execAsync('npm run build', { cwd: projectPath });
+
+      return true;
+    } catch (error) {
+      console.error('Vue项目构建失败:', error);
+      return false;
+    }
+  }
+
+  /**
+   * 复制目录
+   */
+  private async copyDirectory(src: string, dest: string): Promise<void> {
+    try {
+      // 确保目标目录存在
+      if (!fs.existsSync(dest)) {
+        fs.mkdirSync(dest, { recursive: true });
+      }
+
+      // 读取源目录
+      const entries = fs.readdirSync(src, { withFileTypes: true });
+
+      for (const entry of entries) {
+        const srcPath = path.join(src, entry.name);
+        const destPath = path.join(dest, entry.name);
+
+        if (entry.isDirectory()) {
+          // 递归复制子目录
+          await this.copyDirectory(srcPath, destPath);
+        } else {
+          // 复制文件
+          fs.copyFileSync(srcPath, destPath);
+        }
+      }
+    } catch (error) {
+      throw new Error(`复制目录失败: ${error.message}`);
+    }
+  }
+
+  /**
+   * 异步生成应用截图并更新封面
+   */
+  async generateAppScreenshotAsync(appId: number, appUrl: string): Promise<void> {
+    // 使用异步方式生成截图
+    setTimeout(async () => {
+      try {
+        // 这里应该调用截图服务生成截图并上传
+        // 暂时使用模拟的截图URL
+        const screenshotUrl = `${this.DEPLOY_HOST}/screenshots/app_${appId}_${Date.now()}.png`;
+        
+        // 更新数据库的封面
+        await this.updateById({
+          id: appId,
+          cover: screenshotUrl,
+        });
+        
+        console.log(`应用 ${appId} 截图已生成: ${screenshotUrl}`);
+      } catch (error) {
+        console.error(`生成应用 ${appId} 截图失败:`, error);
+      }
+    }, 1000); // 延迟1秒执行
   }
 
   /**

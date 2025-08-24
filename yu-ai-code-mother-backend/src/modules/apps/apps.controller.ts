@@ -95,6 +95,49 @@ export class AppsController {
   }
 
   /**
+   * 应用部署
+   * @param appDeployDto 部署请求
+   * @param req 请求对象
+   * @returns 部署URL
+   */
+  @Post('deploy')
+  async deployApp(@Body() appDeployDto: AppDeployDto, @Req() req) {
+    try {
+      // 检查部署请求是否为空
+      if (!appDeployDto) {
+        throw new BadRequestException('参数错误');
+      }
+      
+      // 获取应用ID
+      const appId = appDeployDto.appId;
+      
+      // 检查应用ID是否为空
+      if (!appId || appId <= 0) {
+        throw new BadRequestException('应用ID不能为空');
+      }
+      
+      // 获取当前登录用户
+      const loginUser = await this.usersService.getLoginUser(req);
+      
+      // 调用服务部署应用
+      const deployUrl = await this.appsService.deployApp(appId, loginUser);
+      
+      // 返回部署URL
+      return {
+        code: 0,
+        data: deployUrl,
+        message: '应用部署成功',
+      };
+    } catch (error) {
+      console.error('Deploy app error:', error);
+      if (error instanceof HttpException) {
+        throw error;
+      }
+      throw new InternalServerErrorException('应用部署失败');
+    }
+  }
+
+  /**
    * 下载应用代码
    */
   @Get('download/:appId')

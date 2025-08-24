@@ -16,8 +16,8 @@ import * as fs from 'fs';
  */
 @Controller('static')
 export class StaticController {
-  // 应用部署根目录（用于访问部署后的应用）
-  private readonly DEPLOY_ROOT_DIR = process.env.CODE_DEPLOY_ROOT_DIR || path.join(process.cwd(), 'deploy');
+  // 应用生成根目录（用于浏览）
+  private readonly PREVIEW_ROOT_DIR = process.env.CODE_OUTPUT_ROOT_DIR || path.join(process.cwd(), 'output');
 
   /**
    * 提供静态资源访问，支持目录重定向
@@ -56,7 +56,7 @@ export class StaticController {
       }
 
       // 构建文件路径
-      const filePath = path.join(this.DEPLOY_ROOT_DIR, deployKey + finalResourcePath);
+      const filePath = path.join(this.PREVIEW_ROOT_DIR, deployKey + finalResourcePath);
       
       // 检查文件是否存在
       if (!fs.existsSync(filePath)) {
