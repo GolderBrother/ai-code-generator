@@ -130,7 +130,94 @@ export class VisualEditor {
           this.options.onElementHover(data.elementInfo)
         }
         break
+      case 'INIT_EDIT_MODE':
+        // 处理备选方案的初始化请求
+        this.handleInitEditMode(data)
+        break
     }
+  }
+
+  /**
+   * 处理编辑模式初始化（备选方案）
+   */
+  private handleInitEditMode(data: any) {
+    if (data.script && this.iframe?.contentWindow) {
+      try {
+        // 尝试通过 Function 构造器执行脚本（比 eval 更安全）
+        const scriptFunction = new Function(data.script)
+        this.iframe.contentWindow.eval(`(${scriptFunction.toString()})()`)
+      } catch (error) {
+        console.warn('Failed to initialize edit mode via Function constructor:', error)
+        try {
+          // 最后的备选方案：直接通过 postMessage 发送指令
+          this.initEditModeViaMessages()
+        } catch (fallbackError) {
+          console.warn('All edit mode initialization methods failed:', fallbackError)
+          this.showEditModeUnavailable()
+        }
+      }
+    }
+  }
+
+  /**
+   * 通过消息通信初始化编辑模式（最安全的方式）
+   */
+  private initEditModeViaMessages() {
+    // 发送样式注入指令
+    this.sendMessageToIframe({
+      type: 'INJECT_STYLES',
+      styles: `
+        .edit-hover {
+          outline: 2px dashed #1890ff !important;
+          outline-offset: 2px !important;
+          cursor: crosshair !important;
+          transition: outline 0.2s ease !important;
+          position: relative !important;
+        }
+        .edit-hover::before {
+          content: '' !important;
+          position: absolute !important;
+          top: -4px !important;
+          left: -4px !important;
+          right: -4px !important;
+          bottom: -4px !important;
+          background: rgba(24, 144, 255, 0.02) !important;
+          pointer-events: none !important;
+          z-index: -1 !important;
+        }
+        .edit-selected {
+          outline: 3px solid #52c41a !important;
+          outline-offset: 2px !important;
+          cursor: default !important;
+          position: relative !important;
+        }
+        .edit-selected::before {
+          content: '' !important;
+          position: absolute !important;
+          top: -4px !important;
+          left: -4px !important;
+          right: -4px !important;
+          bottom: -4px !important;
+          background: rgba(82, 196, 26, 0.03) !important;
+          pointer-events: none !important;
+          z-index: -1 !important;
+        }
+      `
+    })
+
+    // 启用编辑模式
+    this.sendMessageToIframe({
+      type: 'TOGGLE_EDIT_MODE',
+      editMode: true,
+    })
+  }
+
+  /**
+   * 显示编辑模式不可用的提示
+   */
+  private showEditModeUnavailable() {
+    console.warn('Visual edit mode is not available due to security restrictions')
+    // 可以在这里添加用户界面提示
   }
 
   /**
@@ -160,20 +247,36 @@ export class VisualEditor {
             return
           }
 
-          const script = this.generateEditScript()
+          // 直接创建 script 元素并设置内容，避免 CSP 问题
           const scriptElement = this.iframe!.contentDocument.createElement('script')
           scriptElement.id = 'visual-edit-script'
-          scriptElement.textContent = script
+          scriptElement.type = 'text/javascript'
+          scriptElement.textContent = this.generateEditScript()
+
           this.iframe!.contentDocument.head.appendChild(scriptElement)
         } else {
           setTimeout(waitForIframeLoad, 100)
         }
-      } catch {
-        // 静默处理注入失败
+      } catch (error) {
+        console.warn('Failed to inject edit script directly, using fallback:', error)
+        // 如果注入失败，使用 postMessage 作为备选方案
+        this.fallbackToPostMessage()
       }
     }
 
     waitForIframeLoad()
+  }
+
+  /**
+   * 备选方案：通过 postMessage 实现编辑功能
+   */
+  private fallbackToPostMessage() {
+    // 直接通过消息通信启用编辑模式
+    this.sendMessageToIframe({
+      type: 'INIT_EDIT_MODE',
+      editMode: true,
+      script: this.generateEditScript()
+    })
   }
 
   /**
@@ -363,7 +466,7 @@ export class VisualEditor {
 
         // 监听父窗口消息
         window.addEventListener('message', (event) => {
-           const { type, editMode } = event.data;
+           const { type, editMode, styles } = event.data;
            switch (type) {
              case 'TOGGLE_EDIT_MODE':
                isEditMode = editMode;
@@ -374,6 +477,13 @@ export class VisualEditor {
                } else {
                  clearHoverEffect();
                  clearSelectedEffect();
+               }
+               break;
+             case 'INJECT_STYLES':
+               if (styles) {
+                 injectCustomStyles(styles);
+                 setupEventListeners();
+                 showEditTip();
                }
                break;
              case 'CLEAR_SELECTION':
@@ -388,6 +498,15 @@ export class VisualEditor {
                break;
            }
          });
+
+         // 注入自定义样式
+         function injectCustomStyles(customStyles) {
+           if (document.getElementById('edit-mode-styles')) return;
+           const style = document.createElement('style');
+           style.id = 'edit-mode-styles';
+           style.textContent = customStyles;
+           document.head.appendChild(style);
+         }
 
          function showEditTip() {
            if (document.getElementById('edit-tip')) return;

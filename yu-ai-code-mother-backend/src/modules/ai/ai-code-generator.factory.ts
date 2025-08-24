@@ -10,10 +10,7 @@ export class HtmlCodeGenerator implements CodeGenerator {
   constructor(private readonly aiService: AiCodeGeneratorService) {}
 
   async generate(request: any): Promise<any> {
-    return this.aiService.generateCode({
-      prompt: request.prompt,
-      codeType: 'html',
-    });
+    return this.aiService.generateCode(request.prompt, 'html');
   }
 
   getSupportedTypes(): string[] {
@@ -25,12 +22,7 @@ export class MultiFileCodeGenerator implements CodeGenerator {
   constructor(private readonly aiService: AiCodeGeneratorService) {}
 
   async generate(request: any): Promise<any> {
-    return this.aiService.generateCode({
-      prompt: request.prompt,
-      codeType: 'multi-file',
-      framework: request.framework,
-      features: request.features,
-    });
+    return this.aiService.generateCode(request.prompt, 'multi_file');
   }
 
   getSupportedTypes(): string[] {
@@ -42,12 +34,7 @@ export class ReactCodeGenerator implements CodeGenerator {
   constructor(private readonly aiService: AiCodeGeneratorService) {}
 
   async generate(request: any): Promise<any> {
-    return this.aiService.generateCode({
-      prompt: request.prompt,
-      codeType: 'react',
-      framework: 'react',
-      features: request.features,
-    });
+    return this.aiService.generateCode(request.prompt, 'html');
   }
 
   getSupportedTypes(): string[] {
@@ -59,12 +46,7 @@ export class VueCodeGenerator implements CodeGenerator {
   constructor(private readonly aiService: AiCodeGeneratorService) {}
 
   async generate(request: any): Promise<any> {
-    return this.aiService.generateCode({
-      prompt: request.prompt,
-      codeType: 'vue',
-      framework: 'vue',
-      features: request.features,
-    });
+    return this.aiService.generateCode(request.prompt, 'vue_project');
   }
 
   getSupportedTypes(): string[] {

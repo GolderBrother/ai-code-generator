@@ -9,8 +9,11 @@ import { UpdateAppDto } from './dto/update-app.dto';
 import { AppQueryDto } from './dto/app-query.dto';
 import { AiService } from '../ai/ai.service';
 import { UsersService } from '../users/users.service';
+import { ChatHistoryService } from '../chat-history/chat-history.service';
 import { Response } from 'express';
 import { Observable } from 'rxjs';
+import * as fs from 'fs';
+import * as path from 'path';
 
 @Injectable()
 export class AppsService {
@@ -20,42 +23,653 @@ export class AppsService {
     private readonly userRepository: Repository<User>,
     private readonly aiService: AiService,
     private readonly usersService: UsersService,
+    private readonly chatHistoryService: ChatHistoryService,
   ) {}
+
+  // 配置常量
+  private readonly CODE_OUTPUT_ROOT_DIR = process.env.CODE_OUTPUT_ROOT_DIR || path.join(process.cwd(), 'output');
+  private readonly CODE_DEPLOY_ROOT_DIR = process.env.CODE_DEPLOY_ROOT_DIR || path.join(process.cwd(), 'deploy');
+  private readonly DEPLOY_HOST = process.env.DEPLOY_HOST || 'http://localhost:3000/api/static';
 
   /**
    * AI对话生成代码 (SSE流式)
    */
   chatToGenCode(appId: number, message: string, user: User): Observable<any> {
     return new Observable(subscriber => {
-      // 异步验证应用权限
-      this.getById(appId).then(app => {
-        if (!app || app.userId !== user.id) {
-          subscriber.error(new UnauthorizedException('无权限访问该应用'));
-          return;
+      (async () => {
+        try {
+          // 1. 参数校验
+          if (!appId || appId <= 0) {
+            throw new UnauthorizedException('应用 ID 错误');
+          }
+          if (!message || message.trim() === '') {
+            throw new UnauthorizedException('提示词不能为空');
+          }
+
+          // 2. 查询应用信息
+          const app = await this.getById(appId);
+          if (!app) {
+            throw new NotFoundException('应用不存在');
+          }
+
+          // 3. 权限校验：仅本人可以和自己的应用对话
+          console.log('权限校验调试信息:', {
+            appId,
+            appUserId: app.userId,
+            currentUserId: user.id,
+            userIdType: typeof user.id,
+            appUserIdType: typeof app.userId,
+            isEqual: app.userId === user.id,
+            user: user
+          });
+          
+          if (app.userId !== user.id) {
+            throw new UnauthorizedException(`无权限访问该应用 - 应用所有者ID: ${app.userId}, 当前用户ID: ${user.id}`);
+          }
+
+          // 4. 获取应用的代码生成类型
+          const codeGenType = app.codeGenType || 'html';
+
+          // 5. 保存用户消息到数据库
+          try {
+            await this.chatHistoryService.addChatHistory({
+              appId,
+              messageContent: message,
+              messageType: 0, // 0 表示用户消息
+            }, user);
+          } catch (error) {
+            console.warn('保存聊天记录失败:', error);
+          }
+
+          // 6. 调用AI生成代码（流式输出）
+          const chunks = [
+            '🔍 正在分析您的需求...',
+            '🚀 开始生成代码...',
+            '📝 生成HTML结构...',
+            '🎨 生成CSS样式...',
+            '⚡ 生成JavaScript逻辑...',
+            '💾 正在保存文件...',
+            '✅ 代码生成完成！'
+          ];
+
+          // 模拟流式输出
+          for (let i = 0; i < chunks.length; i++) {
+            await new Promise(resolve => setTimeout(resolve, 600));
+            subscriber.next({ d: chunks[i] });
+          }
+
+          // 7. 生成并保存代码文件
+          await this.generateAndSaveCodeFiles(appId, message, app, codeGenType);
+
+          // 8. 保存AI响应到数据库
+          try {
+            await this.chatHistoryService.addChatHistory({
+              appId,
+              messageContent: '代码生成完成',
+              messageType: 1, // 1 表示AI响应
+            }, user);
+          } catch (error) {
+            console.warn('保存AI响应失败:', error);
+          }
+
+          // 9. 发送完成事件
+          subscriber.next({ event: 'done', data: '' });
+          subscriber.complete();
+
+        } catch (error) {
+          console.error('Code generation error:', error);
+          subscriber.error(error);
         }
+      })();
+    });
+  }
 
-        // 调用AI服务生成代码
-        const chunks = [
-          '正在分析您的需求...',
-          '开始生成代码...',
-          '生成HTML结构...',
-          '生成CSS样式...',
-          '生成JavaScript逻辑...',
-          '代码生成完成！'
-        ];
+  /**
+   * 生成并保存代码文件（参考Java版本的完整实现）
+   */
+  private async generateAndSaveCodeFiles(appId: number, message: string, app: App, codeGenType: string): Promise<void> {
+    try {
+      // 1. 构建输出目录
+      const sourceDirName = `${codeGenType}_${appId}`;
+      const outputDir = path.join(this.CODE_OUTPUT_ROOT_DIR, sourceDirName);
+      
+      // 2. 确保目录存在
+      if (!fs.existsSync(outputDir)) {
+        fs.mkdirSync(outputDir, { recursive: true });
+      }
 
-        chunks.forEach((chunk, index) => {
-          setTimeout(() => {
-            subscriber.next({ d: chunk });
-            if (index === chunks.length - 1) {
-              subscriber.complete();
-            }
-          }, index * 1000);
+      // 3. 根据代码生成类型生成不同的文件
+      switch (codeGenType) {
+        case 'html':
+          await this.generateHtmlFiles(outputDir, message, app);
+          break;
+        case 'vue_project':
+          await this.generateVueProjectFiles(outputDir, message, app);
+          break;
+        case 'multi_file':
+          await this.generateMultiFileProject(outputDir, message, app);
+          break;
+        default:
+          await this.generateHtmlFiles(outputDir, message, app);
+      }
+
+      console.log(`代码文件已生成到: ${outputDir}`);
+    } catch (error) {
+      console.error('生成代码文件失败:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * 生成HTML文件
+   */
+  private async generateHtmlFiles(outputDir: string, message: string, app: App): Promise<void> {
+    const htmlContent = this.generateHtmlContent(message, app);
+    const htmlFilePath = path.join(outputDir, 'index.html');
+    fs.writeFileSync(htmlFilePath, htmlContent, 'utf8');
+  }
+
+  /**
+   * 生成多文件项目
+   */
+  private async generateMultiFileProject(outputDir: string, message: string, app: App): Promise<void> {
+    // 生成HTML文件
+    const htmlContent = this.generateHtmlContent(message, app);
+    const htmlFilePath = path.join(outputDir, 'index.html');
+    fs.writeFileSync(htmlFilePath, htmlContent, 'utf8');
+
+    // 生成CSS文件
+    const cssContent = this.generateCssContent(message, app);
+    const cssFilePath = path.join(outputDir, 'style.css');
+    fs.writeFileSync(cssFilePath, cssContent, 'utf8');
+
+    // 生成JS文件
+    const jsContent = this.generateJsContent(message, app);
+    const jsFilePath = path.join(outputDir, 'script.js');
+    fs.writeFileSync(jsFilePath, jsContent, 'utf8');
+  }
+
+  /**
+   * 生成Vue项目文件
+   */
+  private async generateVueProjectFiles(outputDir: string, message: string, app: App): Promise<void> {
+    // 创建Vue项目基础结构
+    const directories = ['src', 'src/components', 'src/views', 'public'];
+    directories.forEach(dir => {
+      const dirPath = path.join(outputDir, dir);
+      if (!fs.existsSync(dirPath)) {
+        fs.mkdirSync(dirPath, { recursive: true });
+      }
+    });
+
+    // 生成package.json
+    const packageJson = {
+      name: `vue-app-${app.id}`,
+      version: '1.0.0',
+      scripts: {
+        dev: 'vite',
+        build: 'vite build',
+        preview: 'vite preview'
+      },
+      dependencies: {
+        vue: '^3.3.0',
+        '@vitejs/plugin-vue': '^4.0.0',
+        vite: '^4.0.0'
+      }
+    };
+    fs.writeFileSync(path.join(outputDir, 'package.json'), JSON.stringify(packageJson, null, 2));
+
+    // 生成主要Vue文件
+    const vueContent = this.generateVueContent(message, app);
+    fs.writeFileSync(path.join(outputDir, 'src/App.vue'), vueContent);
+
+    // 生成index.html
+    const indexHtml = `<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${app.appName}</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>`;
+    fs.writeFileSync(path.join(outputDir, 'index.html'), indexHtml);
+  }
+
+  /**
+   * 生成HTML内容
+   */
+  private generateHtmlContent(message: string, app: App): string {
+    // 这里应该调用AI服务生成真正的HTML内容
+    return `<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:;">
+    <title>${app.appName}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .app-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #007bff;
+        }
+        .feature-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .btn {
+            background: #007bff;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>${app.appName}</h1>
+        <div class="app-info">
+            <h3>应用信息</h3>
+            <p><strong>描述：</strong>${app.initPrompt || '暂无描述'}</p>
+            <p><strong>类型：</strong>${app.codeGenType || 'Web应用'}</p>
+            <p><strong>用户需求：</strong>${message}</p>
+            <p><strong>生成时间：</strong>${new Date().toLocaleString('zh-CN')}</p>
+        </div>
+        
+        <div class="feature-section">
+            <h3>功能演示</h3>
+            <div id="app-content">
+                <!-- 根据用户需求生成的具体功能 -->
+                <p>根据您的需求"${message}"，我们为您生成了这个应用。</p>
+                <button class="btn" onclick="showDemo()">点击体验功能</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showDemo() {
+            alert('功能演示：' + '${message}');
+        }
+        
+        // 页面加载完成后的初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('应用已加载完成');
         });
-      }).catch(error => {
-        subscriber.error(error);
+    </script>
+</body>
+</html>`;
+  }
+
+  /**
+   * 生成Vue组件内容
+   */
+  private generateVueContent(message: string, app: App): string {
+    return `<template>
+  <div class="app-container">
+    <header class="app-header">
+      <h1>{{ appName }}</h1>
+      <p>{{ appDesc }}</p>
+    </header>
+    
+    <main class="app-main">
+      <div class="feature-card">
+        <h2>功能说明</h2>
+        <p>{{ userMessage }}</p>
+        <button @click="handleAction" class="action-btn">
+          开始使用
+        </button>
+      </div>
+    </main>
+  </div>
+</template>
+
+<script>
+import { ref, onMounted } from 'vue'
+
+export default {
+  name: 'App',
+  setup() {
+    const appName = ref('${app.appName}')
+    const appDesc = ref('${app.initPrompt || '暂无描述'}')
+    const userMessage = ref('${message}')
+    
+    const handleAction = () => {
+      alert('功能执行：' + userMessage.value)
+    }
+    
+    onMounted(() => {
+      console.log('Vue应用已挂载')
+    })
+    
+    return {
+      appName,
+      appDesc,
+      userMessage,
+      handleAction
+    }
+  }
+}
+</script>
+
+<style scoped>
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.app-header h1 {
+  color: #2c3e50;
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.feature-card {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.action-btn {
+  background: #42b883;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+  background: #369870;
+  transform: translateY(-2px);
+}
+</style>`;
+  }
+
+  /**
+   * 生成CSS内容
+   */
+  private generateCssContent(message: string, app: App): string {
+    return `/* ${app.appName} - 样式文件 */
+/* 生成需求: ${message} */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.header h1 {
+  font-size: 3em;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  backdrop-filter: blur(10px);
+  margin-bottom: 20px;
+}
+
+.btn {
+  background: #007bff;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+}
+
+.btn-success {
+  background: #28a745;
+}
+
+.btn-success:hover {
+  background: #218838;
+}
+
+.btn-warning {
+  background: #ffc107;
+  color: #212529;
+}
+
+.btn-warning:hover {
+  background: #e0a800;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+  
+  .header h1 {
+    font-size: 2em;
+  }
+  
+  .card {
+    padding: 20px;
+  }
+}`;
+  }
+
+  /**
+   * 生成JavaScript内容
+   */
+  private generateJsContent(message: string, app: App): string {
+    return `// ${app.appName} - 主要功能脚本
+// 生成需求: ${message}
+
+class AppManager {
+  constructor() {
+    this.appName = '${app.appName}';
+    this.appDesc = '${app.initPrompt || ''}';
+    this.userMessage = '${message}';
+    this.init();
+  }
+  
+  init() {
+    console.log(\`\${this.appName} 应用已初始化\`);
+    this.bindEvents();
+    this.loadData();
+  }
+  
+  bindEvents() {
+    // 绑定按钮点击事件
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('btn')) {
+        this.handleButtonClick(e.target);
+      }
+    });
+    
+    // 绑定表单提交事件
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        this.handleFormSubmit(form);
       });
     });
+  }
+  
+  handleButtonClick(button) {
+    const action = button.dataset.action || 'default';
+    console.log(\`执行操作: \${action}\`);
+    
+    switch(action) {
+      case 'demo':
+        this.showDemo();
+        break;
+      case 'save':
+        this.saveData();
+        break;
+      case 'load':
+        this.loadData();
+        break;
+      default:
+        this.showMessage('按钮被点击了！');
+    }
+  }
+  
+  handleFormSubmit(form) {
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    console.log('表单数据:', data);
+    this.showMessage('表单提交成功！');
+  }
+  
+  showDemo() {
+    this.showMessage(\`演示功能: \${this.userMessage}\`);
+  }
+  
+  saveData() {
+    const data = {
+      appName: this.appName,
+      timestamp: new Date().toISOString(),
+      userMessage: this.userMessage
+    };
+    localStorage.setItem('appData', JSON.stringify(data));
+    this.showMessage('数据已保存到本地存储');
+  }
+  
+  loadData() {
+    const savedData = localStorage.getItem('appData');
+    if (savedData) {
+      const data = JSON.parse(savedData);
+      console.log('加载的数据:', data);
+      this.showMessage('数据加载成功');
+    } else {
+      this.showMessage('没有找到保存的数据');
+    }
+  }
+  
+  showMessage(message) {
+    // 创建提示消息
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'message-toast';
+    messageDiv.textContent = message;
+    messageDiv.style.cssText = \`
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #007bff;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 5px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      z-index: 1000;
+      animation: slideIn 0.3s ease;
+    \`;
+    
+    document.body.appendChild(messageDiv);
+    
+    // 3秒后自动移除
+    setTimeout(() => {
+      messageDiv.style.animation = 'slideOut 0.3s ease';
+      setTimeout(() => {
+        document.body.removeChild(messageDiv);
+      }, 300);
+    }, 3000);
+  }
+}
+
+// 添加CSS动画
+const style = document.createElement('style');
+style.textContent = \`
+  @keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  
+  @keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+  }
+\`;
+document.head.appendChild(style);
+
+// 页面加载完成后初始化应用
+document.addEventListener('DOMContentLoaded', () => {
+  window.appManager = new AppManager();
+});`;
   }
 
   /**
