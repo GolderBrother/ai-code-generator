@@ -6,7 +6,7 @@ import { AppsService } from './apps.service';
 import { App } from './entities/app.entity';
 import { AppRepository } from './repositories/app.repository';
 import { AiModule } from '../ai/ai.module';
-import { ChatModule } from '../chat/chat.module';
+import { ChatHistoryModule } from '../chat-history/chat-history.module';
 import { UsersModule } from '../users/users.module';
 
 @Module({
@@ -14,7 +14,7 @@ import { UsersModule } from '../users/users.module';
     TypeOrmModule.forFeature([App]),
     CacheModule.register(),
     AiModule,
-    ChatModule,
+    ChatHistoryModule,
     UsersModule,
   ],
   controllers: [AppsController],

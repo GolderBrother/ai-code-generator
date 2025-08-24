@@ -29,22 +29,19 @@ export class AppRepository {
   }
 
   async delete(id: number): Promise<boolean> {
-    const result = await this.appRepository.update(id, { isDelete: true });
+    const result = await this.appRepository.update(id, { isDelete: 1 });
     return result.affected > 0;
   }
 
   async findByUserId(userId: number, query: AppQueryDto): Promise<App[]> {
     const queryBuilder = this.appRepository.createQueryBuilder('app')
       .where('app.userId = :userId', { userId })
-      .andWhere('app.isDelete = :isDelete', { isDelete: false });
+      .andWhere('app.isDelete = :isDelete', { isDelete: 0 });
 
     if (query.appName) {
       queryBuilder.andWhere('app.appName LIKE :appName', { appName: `%${query.appName}%` });
     }
 
-    if (query.appType !== undefined) {
-      queryBuilder.andWhere('app.appType = :appType', { appType: query.appType });
-    }
 
     return queryBuilder
       .orderBy('app.createTime', 'DESC')
@@ -55,7 +52,7 @@ export class AppRepository {
 
   async countByUserId(userId: number): Promise<number> {
     return this.appRepository.count({
-      where: { userId, isDelete: false },
+      where: { userId, isDelete: 0 },
     });
   }
 
@@ -64,7 +61,7 @@ export class AppRepository {
   // 查找所有应用
   async findAll(): Promise<App[]> {
     return this.appRepository.find({
-      where: { isDelete: false },
+      where: { isDelete: 0 },
       order: { createTime: 'DESC' },
     });
   }
@@ -73,8 +70,7 @@ export class AppRepository {
   async findGoodApps(): Promise<App[]> {
     return this.appRepository.find({
       where: { 
-        isDelete: false,
-        appStatus: 1, // 假设状态1表示精选
+        isDelete: 0,
       },
       order: { createTime: 'DESC' },
     });

@@ -1,6 +1,6 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
+import { Injectable, Logger } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
+import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from "@nestjs/typeorm";
 
 @Injectable()
 export class DatabaseConfig implements TypeOrmOptionsFactory {
@@ -9,28 +9,34 @@ export class DatabaseConfig implements TypeOrmOptionsFactory {
 
   createTypeOrmOptions(): TypeOrmModuleOptions {
     // 获取环境变量或使用默认值
-    const host = this.configService.get('DATABASE_HOST', 'localhost');
-    const port = this.configService.get('DATABASE_PORT', 3306);
-    const username = this.configService.get('DATABASE_USERNAME', 'root');
-    const password = this.configService.get('DATABASE_PASSWORD', 'root');
-    const database = this.configService.get('DATABASE_NAME', 'yu_ai_code_mother');
-    const isDevelopment = this.configService.get('NODE_ENV') === 'development';
-    
+    const host = this.configService.get("DATABASE_HOST", "localhost");
+    const port = this.configService.get("DATABASE_PORT", 3306);
+    const username = this.configService.get("DATABASE_USERNAME", "root");
+    const password = this.configService.get("DATABASE_PASSWORD", "root");
+    const database = this.configService.get(
+      "DATABASE_NAME",
+      "yu_ai_code_mother"
+    );
+    const isDevelopment = this.configService.get("NODE_ENV") === "development";
+
     // 打印数据库连接信息，便于调试
-    this.logger.log(`数据库连接信息: ${host}:${port}, 用户: ${username}, 数据库: ${database}`);
-    
+    this.logger.log(
+      `数据库连接信息: ${host}:${port}, 用户: ${username}, 数据库: ${database}`
+    );
+
     return {
-      type: 'mysql',
+      type: "mysql",
       host,
       port,
       username,
       password,
       database,
-      synchronize: true, // 强制同步表结构
+      synchronize: isDevelopment, // 开发环境启用同步
+      // synchronize: false, // 如果仍有问题可以禁用
       dropSchema: false, // 不删除现有数据
       logging: isDevelopment,
-      charset: 'utf8mb4',
-      timezone: '+08:00',
+      charset: "utf8mb4",
+      timezone: "+08:00",
       retryAttempts: 3, // 重试次数
       retryDelay: 3000, // 重试延迟
       autoLoadEntities: true,

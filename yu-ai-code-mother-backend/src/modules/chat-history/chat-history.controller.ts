@@ -10,14 +10,14 @@ import {
   HttpStatus,
   Req
 } from '@nestjs/common';
-import { ChatService } from './chat.service';
+import { ChatHistoryService } from './chat-history.service';
 import { UsersService } from '../users/users.service';
 import { ChatHistoryAddDto, ChatHistoryUpdateDto } from './dto';
 
 @Controller('chatHistory')
-export class ChatController {
+export class ChatHistoryController {
   constructor(
-    private readonly chatService: ChatService,
+    private readonly chatHistoryService: ChatHistoryService,
     private readonly usersService: UsersService,
   ) {}
 
@@ -34,7 +34,7 @@ export class ChatController {
     }
     
     const loginUser = await this.usersService.getLoginUser(req);
-    const result = await this.chatService.addChatHistory(chatHistoryAddDto, loginUser);
+    const result = await this.chatHistoryService.addChatHistory(chatHistoryAddDto, loginUser);
     return {
       code: 0,
       data: result,
@@ -55,7 +55,7 @@ export class ChatController {
     }
     
     const loginUser = await this.usersService.getLoginUser(req);
-    const result = await this.chatService.deleteChatHistory(id, loginUser);
+    const result = await this.chatHistoryService.deleteChatHistory(id, loginUser);
     return {
       code: 0,
       data: result,
@@ -76,7 +76,7 @@ export class ChatController {
     }
     
     const loginUser = await this.usersService.getLoginUser(req);
-    const result = await this.chatService.updateChatHistory(chatHistoryUpdateDto, loginUser);
+    const result = await this.chatHistoryService.updateChatHistory(chatHistoryUpdateDto, loginUser);
     return {
       code: 0,
       data: result,
@@ -97,7 +97,7 @@ export class ChatController {
     }
     
     const loginUser = await this.usersService.getLoginUser(req);
-    const result = await this.chatService.getChatHistoryById(id, loginUser);
+    const result = await this.chatHistoryService.getChatHistoryById(id, loginUser);
     return {
       code: 0,
       data: result,
@@ -114,7 +114,7 @@ export class ChatController {
     @Req() req
   ) {
     const loginUser = await this.usersService.getLoginUser(req);
-    const result = await this.chatService.listChatHistoryByPage(queryDto, loginUser);
+    const result = await this.chatHistoryService.listChatHistoryByPage(queryDto, loginUser);
     return {
       code: 0,
       data: result,
@@ -136,7 +136,7 @@ export class ChatController {
       throw new HttpException('无权限', HttpStatus.FORBIDDEN);
     }
     
-    const result = await this.chatService.listChatHistoryVOByPage(queryDto);
+    const result = await this.chatHistoryService.listChatHistoryVOByPage(queryDto);
     return {
       code: 0,
       data: result,
@@ -153,7 +153,7 @@ export class ChatController {
     @Req() req
   ) {
     const loginUser = await this.usersService.getLoginUser(req);
-    const result = await this.chatService.listMyChatHistoryVOByPage(queryDto, loginUser);
+    const result = await this.chatHistoryService.listMyChatHistoryVOByPage(queryDto, loginUser);
     return {
       code: 0,
       data: result,
@@ -177,7 +177,7 @@ export class ChatController {
 
     const loginUser = await this.usersService.getLoginUser(req);
     const lastCreateTimeDate = lastCreateTime ? new Date(lastCreateTime) : undefined;
-    const result = await this.chatService.listAppChatHistoryByPage(
+    const result = await this.chatHistoryService.listAppChatHistoryByPage(
       appId, 
       pageSize, 
       lastCreateTimeDate, 

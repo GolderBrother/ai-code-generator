@@ -6,14 +6,11 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
-  Index,
 } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
 import { App } from '../../apps/entities/app.entity';
 
 @Entity('chat_history')
-@Index(['appId'])
-@Index(['userId'])
 export class ChatHistory {
   @PrimaryGeneratedColumn()
   id: number;
@@ -24,11 +21,11 @@ export class ChatHistory {
   @Column({ name: 'user_id' })
   userId: number;
 
-  @Column({ name: 'message_type' })
-  messageType: number; // 0-用户，1-AI
-
   @Column({ name: 'message_content', type: 'text' })
   messageContent: string;
+
+  @Column({ name: 'message_type', default: 0 })
+  messageType: number;
 
   @CreateDateColumn({ name: 'create_time' })
   createTime: Date;
@@ -36,16 +33,15 @@ export class ChatHistory {
   @UpdateDateColumn({ name: 'update_time' })
   updateTime: Date;
 
-  @Column({ name: 'is_delete', default: false })
-  isDelete: boolean;
+  @Column({ name: 'is_delete', default: 0 })
+  isDelete: number;
 
   // 关联关系
-  @ManyToOne(() => App, (app) => app.chatHistories)
-  @JoinColumn({ name: 'app_id' })
-  app: App;
-
-  @ManyToOne(() => User, (user) => user.chatHistories)
+  @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id' })
   user: User;
-}
 
+  @ManyToOne(() => App)
+  @JoinColumn({ name: 'app_id' })
+  app: App;
+}

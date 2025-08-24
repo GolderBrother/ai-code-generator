@@ -18,7 +18,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { UsersModule } from './modules/users/users.module';
 import { AppsModule } from './modules/apps/apps.module';
 import { AiModule } from './modules/ai/ai.module';
-import { ChatModule } from './modules/chat/chat.module';
+import { ChatHistoryModule } from './modules/chat-history/chat-history.module';
 import { StaticModule } from './modules/static/static.module';
 import { WorkflowModule } from './modules/workflow/workflow.module';
 import { LanggraphModule } from './modules/langgraph/langgraph.module';
@@ -64,7 +64,7 @@ import { AppController } from './app.controller';
     UsersModule,
     AppsModule,
     AiModule,
-    ChatModule,
+    ChatHistoryModule,
     StaticModule,
     WorkflowModule,
     LanggraphModule,

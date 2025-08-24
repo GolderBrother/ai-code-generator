@@ -79,10 +79,6 @@ export class AppQueryDto {
   @IsInt()
   userId?: number;
 
-  @IsOptional()
-  @Type(() => Number)
-  @IsInt()
-  appType?: number;
 
   /**
    * 排序字段

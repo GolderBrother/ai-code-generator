@@ -12,7 +12,7 @@ export class ChatHistoryRepository {
 
   async findByAppId(appId: number, limit: number = 20): Promise<ChatHistory[]> {
     return this.chatHistoryRepository.find({
-      where: { appId, isDelete: false },
+      where: { appId, isDelete: 0 },
       order: { createTime: 'DESC' },
       take: limit,
       relations: ['user'],
@@ -21,7 +21,7 @@ export class ChatHistoryRepository {
 
   async findByUserId(userId: number, limit: number = 20): Promise<ChatHistory[]> {
     return this.chatHistoryRepository.find({
-      where: { userId, isDelete: false },
+      where: { userId, isDelete: 0 },
       order: { createTime: 'DESC' },
       take: limit,
       relations: ['app'],
@@ -39,13 +39,13 @@ export class ChatHistoryRepository {
   }
 
   async delete(id: number): Promise<boolean> {
-    const result = await this.chatHistoryRepository.update(id, { isDelete: true });
+    const result = await this.chatHistoryRepository.update(id, { isDelete: 1 });
     return result.affected > 0;
   }
 
   async countByAppId(appId: number): Promise<number> {
     return this.chatHistoryRepository.count({
-      where: { appId, isDelete: false },
+      where: { appId, isDelete: 0 },
     });
   }
 
@@ -58,7 +58,7 @@ export class ChatHistoryRepository {
     const queryBuilder = this.chatHistoryRepository
       .createQueryBuilder('chatHistory')
       .where('chatHistory.appId = :appId', { appId })
-      .andWhere('chatHistory.isDelete = :isDelete', { isDelete: false })
+      .andWhere('chatHistory.isDelete = :isDelete', { isDelete: 0 })
       .orderBy('chatHistory.createTime', 'DESC')
       .take(pageSize);
 
@@ -80,7 +80,7 @@ export class ChatHistoryRepository {
       ...options,
       where: {
         ...options.where,
-        isDelete: false,
+        isDelete: 0,
       },
     });
   }
@@ -88,10 +88,24 @@ export class ChatHistoryRepository {
   // 查询所有聊天历史
   async findAll(): Promise<ChatHistory[]> {
     return this.chatHistoryRepository.find({
-      where: { isDelete: false },
+      where: { isDelete: 0 },
       order: { createTime: 'DESC' },
       relations: ['user', 'app'],
     });
   }
-}
 
+  // 通用查找方法
+  async findOne(options: any): Promise<ChatHistory | null> {
+    return this.chatHistoryRepository.findOne(options);
+  }
+
+  // 通用保存方法
+  async save(chatHistory: ChatHistory): Promise<ChatHistory> {
+    return this.chatHistoryRepository.save(chatHistory);
+  }
+
+  // 创建查询构建器
+  createQueryBuilder(alias: string) {
+    return this.chatHistoryRepository.createQueryBuilder(alias);
+  }
+}

@@ -66,10 +66,6 @@ export class AppsService {
     return {
       id: app.id,
       appName: app.appName,
-      appDesc: app.appDesc,
-      appIcon: app.appIcon,
-      appType: app.appType,
-      appStatus: app.appStatus,
       createTime: app.createTime,
       updateTime: app.updateTime,
       // 可以包含用户信息等
@@ -92,9 +88,6 @@ export class AppsService {
       where.appName = { $like: `%${appQueryDto.appName}%` };
     }
     
-    if (appQueryDto.appType) {
-      where.appType = appQueryDto.appType;
-    }
     
     if (appQueryDto.priority) {
       where.priority = appQueryDto.priority;
@@ -129,9 +122,6 @@ export class AppsService {
       queryBuilder.andWhere('app.appName LIKE :appName', { appName: `%${queryWrapper.appName}%` });
     }
     
-    if (queryWrapper.appType) {
-      queryBuilder.andWhere('app.appType = :appType', { appType: queryWrapper.appType });
-    }
     
     if (queryWrapper.priority) {
       queryBuilder.andWhere('app.priority = :priority', { priority: queryWrapper.priority });
@@ -251,8 +241,8 @@ export class AppsService {
     // 目前返回模拟的部署 URL
     const deployUrl = `https://deployed-app-${id}.example.com`;
     
-    // 更新应用状态
-    await this.appRepository.update(id, { appStatus: 1 });
+    // 更新应用部署时间
+    await this.appRepository.update(id, { deployedTime: new Date() });
     
     return deployUrl;
   }

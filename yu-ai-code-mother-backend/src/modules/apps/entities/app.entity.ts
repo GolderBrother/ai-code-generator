@@ -10,7 +10,7 @@ import {
   Index,
 } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
-import { ChatHistory } from '../../chat/entities/chat-history.entity';
+import { ChatHistory } from '../../chat-history/entities/chat-history.entity';
 
 @Entity('app')
 @Index(['userId'])
@@ -22,6 +22,7 @@ export class App {
 
   @Column({ name: 'appName', length: 256, nullable: true })
   appName: string;
+
 
   @Column({ name: 'cover', length: 512, nullable: true })
   cover: string;

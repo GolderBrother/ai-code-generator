@@ -8,7 +8,7 @@ import {
   Index,
 } from 'typeorm';
 import { App } from '../../apps/entities/app.entity';
-import { ChatHistory } from '../../chat/entities/chat-history.entity';
+import { ChatHistory } from '../../chat-history/entities/chat-history.entity';
 
 @Entity('user')
 @Index(['userAccount'], { unique: true })

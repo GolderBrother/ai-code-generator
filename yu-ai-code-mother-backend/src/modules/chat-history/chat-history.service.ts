@@ -7,7 +7,7 @@ import { User } from '../users/entities/user.entity';
 import { App } from '../apps/entities/app.entity';
 
 @Injectable()
-export class ChatService {
+export class ChatHistoryService {
   constructor(
     @InjectRepository(ChatHistory)
     private readonly chatHistoryRepository: Repository<ChatHistory>,
