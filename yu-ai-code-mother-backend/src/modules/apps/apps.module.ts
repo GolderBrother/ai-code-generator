@@ -7,6 +7,7 @@ import { App } from './entities/app.entity';
 import { AppRepository } from './repositories/app.repository';
 import { AiModule } from '../ai/ai.module';
 import { ChatModule } from '../chat/chat.module';
+import { UsersModule } from '../users/users.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { ChatModule } from '../chat/chat.module';
     CacheModule.register(),
     AiModule,
     ChatModule,
+    UsersModule,
   ],
   controllers: [AppsController],
   providers: [AppsService, AppRepository],

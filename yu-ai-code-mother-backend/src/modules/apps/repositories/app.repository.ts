@@ -79,5 +79,20 @@ export class AppRepository {
       order: { createTime: 'DESC' },
     });
   }
+
+  // 通用查找方法
+  async find(options: any): Promise<App[]> {
+    return this.appRepository.find(options);
+  }
+
+  // 通用计数方法
+  async count(options: any): Promise<number> {
+    return this.appRepository.count(options);
+  }
+
+  // 创建查询构建器
+  createQueryBuilder(alias: string) {
+    return this.appRepository.createQueryBuilder(alias);
+  }
 }
 

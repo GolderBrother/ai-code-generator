@@ -3,17 +3,19 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ChatController } from './chat.controller';
 import { ChatService } from './chat.service';
 import { ChatHistory } from './entities/chat-history.entity';
-import { ChatHistoryRepository } from './repositories/chat-history.repository';
+import { App } from '../apps/entities/app.entity';
 import { AiModule } from '../ai/ai.module';
+import { UsersModule } from '../users/users.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([ChatHistory]),
+    TypeOrmModule.forFeature([ChatHistory, App]),
     AiModule,
+    UsersModule,
   ],
   controllers: [ChatController],
-  providers: [ChatService, ChatHistoryRepository],
-  exports: [ChatService, ChatHistoryRepository],
+  providers: [ChatService],
+  exports: [ChatService],
 })
 export class ChatModule {}
 

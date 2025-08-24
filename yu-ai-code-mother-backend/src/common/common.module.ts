@@ -39,14 +39,16 @@ import { ValidationPipe } from './pipes/validation.pipe';
   providers: [
     JwtAuthGuard,
     RolesGuard,
-    {
-      provide: APP_GUARD,
-      useClass: JwtAuthGuard,
-    },
-    {
-      provide: APP_GUARD,
-      useClass: RolesGuard,
-    },
+    // 移除全局 JWT 守卫，因为应用使用 Session 认证
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: JwtAuthGuard,
+    // },
+    // 移除全局角色守卫，改为按需使用
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: RolesGuard,
+    // },
     JwtStrategy,
     TransformInterceptor,
     LoggingInterceptor,

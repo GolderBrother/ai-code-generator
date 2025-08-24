@@ -276,7 +276,7 @@ export class UsersController {
   }
 
   /**
-   * 分页获取用户封装列表（仅管理员）
+   * 分页获取用户列表（仅管理员）
    * @param userQueryDto 查询请求参数
    * @returns 用户分页列表
    */

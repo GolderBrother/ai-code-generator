@@ -14,49 +14,51 @@ import { ChatHistory } from '../../chat/entities/chat-history.entity';
 
 @Entity('app')
 @Index(['userId'])
+@Index(['appName'])
+@Index(['deployKey'], { unique: true })
 export class App {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: 'app_name', length: 128 })
+  @Column({ name: 'appName', length: 256, nullable: true })
   appName: string;
 
-  @Column({ name: 'app_desc', type: 'text', nullable: true })
-  appDesc: string;
+  @Column({ name: 'cover', length: 512, nullable: true })
+  cover: string;
 
-  @Column({ name: 'app_icon', length: 1024, nullable: true })
-  appIcon: string;
+  @Column({ name: 'initPrompt', type: 'text', nullable: true })
+  initPrompt: string;
 
-  @Column({ name: 'app_type', default: 0 })
-  appType: number;
-
-  @Column({ name: 'app_status', default: 0 })
-  appStatus: number;
-
-  @Column({ name: 'app_version', length: 128, default: '1.0.0' })
-  appVersion: string;
-
-  @Column({ name: 'app_size', default: 0 })
-  appSize: number;
-
-  @Column({ name: 'user_id' })
-  userId: number;
-
-  @Column({ name: 'code_gen_type', length: 128 })
+  @Column({ name: 'codeGenType', length: 64, nullable: true })
   codeGenType: string;
 
-  @CreateDateColumn({ name: 'create_time' })
+  @Column({ name: 'deployKey', length: 64, nullable: true })
+  deployKey: string;
+
+  @Column({ name: 'deployedTime', type: 'datetime', nullable: true })
+  deployedTime: Date;
+
+  @Column({ name: 'priority', type: 'int', default: 0 })
+  priority: number;
+
+  @Column({ name: 'userId' })
+  userId: number;
+
+  @Column({ name: 'editTime', type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
+  editTime: Date;
+
+  @CreateDateColumn({ name: 'createTime' })
   createTime: Date;
 
-  @UpdateDateColumn({ name: 'update_time' })
+  @UpdateDateColumn({ name: 'updateTime' })
   updateTime: Date;
 
-  @Column({ name: 'is_delete', default: false })
-  isDelete: boolean;
+  @Column({ name: 'isDelete', type: 'tinyint', default: 0 })
+  isDelete: number;
 
   // 关联关系
   @ManyToOne(() => User, (user) => user.apps)
-  @JoinColumn({ name: 'user_id' })
+  @JoinColumn({ name: 'userId' })
   user: User;
 
   @OneToMany(() => ChatHistory, (chatHistory) => chatHistory.app)

@@ -150,21 +150,25 @@ export class UsersService {
     return this.getLoginUserVO(user);
   }
 
-  // 获取登录用户（从Session中获取）
-  async getLoginUser(request: any): Promise<any> {
+  // 获取登录用户（从Session中获取）- 严格按照Java版本实现
+  async getLoginUser(request: any): Promise<User> {
+    console.log('getLoginUser request.session', request.session)
     // 先判断用户是否登录
     const userObj = request.session[USER_LOGIN_STATE];
+    console.log('getLoginUser userObj', userObj)
     if (!userObj || !userObj.id) {
-      return null; // 用户未登录，返回null而不是抛出异常
+      throw new UnauthorizedException('用户未认证');
     }
     
     // 从数据库查询当前用户信息
-    const currentUser = await this.userRepository.findById(userObj.id);
+    const userId = userObj.id;
+    const currentUser = await this.userRepository.findById(userId);
+    console.log('getLoginUser currentUser', currentUser)
     if (!currentUser) {
-      return null; // 用户不存在，返回null
+      throw new UnauthorizedException('用户未认证');
     }
     
-    return this.getLoginUserVO(currentUser);
+    return currentUser;
   }
 
   // 获取登录用户VO（脱敏后的用户信息）
