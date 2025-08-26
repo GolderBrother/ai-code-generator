@@ -15,33 +15,33 @@ export class ChatHistory {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: 'app_id' })
+  @Column({ name: 'appId' })
   appId: number;
 
-  @Column({ name: 'user_id' })
+  @Column({ name: 'userId' })
   userId: number;
 
-  @Column({ name: 'message_content', type: 'text' })
-  messageContent: string;
+  @Column({ name: 'message', type: 'text' })
+  messageContent: string; // 字段名沿用旧服务命名，列名对齐表结构
 
-  @Column({ name: 'message_type', default: 0 })
+  @Column({ name: 'messageType', default: 0 })
   messageType: number;
 
-  @CreateDateColumn({ name: 'create_time' })
+  @CreateDateColumn({ name: 'createTime' })
   createTime: Date;
 
-  @UpdateDateColumn({ name: 'update_time' })
+  @UpdateDateColumn({ name: 'updateTime' })
   updateTime: Date;
 
-  @Column({ name: 'is_delete', default: 0 })
+  @Column({ name: 'isDelete', default: 0 })
   isDelete: number;
 
   // 关联关系
   @ManyToOne(() => User)
-  @JoinColumn({ name: 'user_id' })
+  @JoinColumn({ name: 'userId' })
   user: User;
 
   @ManyToOne(() => App)
-  @JoinColumn({ name: 'app_id' })
+  @JoinColumn({ name: 'appId' })
   app: App;
 }

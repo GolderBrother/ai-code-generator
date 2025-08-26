@@ -18,6 +18,8 @@ import * as fs from 'fs';
 export class StaticController {
   // 应用部署根目录（用于访问部署后的应用）
   private readonly DEPLOY_ROOT_DIR = process.env.CODE_DEPLOY_ROOT_DIR || path.join(process.cwd(), 'deploy');
+  // 应用生成根目录（用于尚未部署时的直接预览）
+  private readonly OUTPUT_ROOT_DIR = process.env.CODE_OUTPUT_ROOT_DIR || path.join(process.cwd(), 'output');
 
   /**
    * 提供静态资源访问，支持目录重定向
@@ -55,30 +57,47 @@ export class StaticController {
         finalResourcePath = '/' + finalResourcePath;
       }
 
-      // 构建文件路径
-      const filePath = path.join(this.DEPLOY_ROOT_DIR, deployKey + finalResourcePath);
-      
-      // 检查文件是否存在
-      if (!fs.existsSync(filePath)) {
-        return response.status(HttpStatus.NOT_FOUND).send();
+      // 依次尝试在部署目录与生成目录查找资源
+      const candidateBases = [
+        this.DEPLOY_ROOT_DIR,
+        this.OUTPUT_ROOT_DIR,
+      ];
+
+      for (const baseDir of candidateBases) {
+        const filePath = path.join(baseDir, deployKey + finalResourcePath);
+        if (!fs.existsSync(filePath)) continue;
+        const stats = fs.statSync(filePath);
+        if (!stats.isFile()) continue;
+        const contentType = this.getContentTypeWithCharset(filePath);
+        response.setHeader('Content-Type', contentType);
+        return response.sendFile(path.resolve(filePath));
       }
 
-      // 获取文件状态，确保是文件而不是目录
-      const stats = fs.statSync(filePath);
-      if (!stats.isFile()) {
-        return response.status(HttpStatus.NOT_FOUND).send();
-      }
-
-      // 设置Content-Type，完全对齐 Java 版本的 getContentTypeWithCharset 方法
-      const contentType = this.getContentTypeWithCharset(filePath);
-      response.setHeader('Content-Type', contentType);
-
-      // 返回文件资源
-      return response.sendFile(path.resolve(filePath));
+      // 未找到资源
+      return response.status(HttpStatus.NOT_FOUND).send();
     } catch (error) {
       console.error('Static resource error:', error);
       return response.status(HttpStatus.INTERNAL_SERVER_ERROR).send();
     }
+  }
+
+  /**
+   * 处理不带通配符的目录访问，统一重定向到带尾斜杠路径，从而命中上面的通配符路由
+   * 例如：/api/static/html_8  -> 301 -> /api/static/html_8/
+   */
+  @Get(':deployKey')
+  async redirectDir(
+    @Param('deployKey') deployKey: string,
+    @Req() request: Request,
+    @Res() response: Response,
+  ) {
+    const staticPrefix = `/api/static/${deployKey}`;
+    const fullPath = request.path;
+    if (fullPath === staticPrefix) {
+      const redirectUrl = request.originalUrl + '/';
+      return response.redirect(HttpStatus.MOVED_PERMANENTLY, redirectUrl);
+    }
+    return response.status(HttpStatus.NOT_FOUND).send();
   }
 
   /**
