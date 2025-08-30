@@ -43,6 +43,9 @@ export class User {
   @UpdateDateColumn({ type: 'datetime' })
   updateTime: Date;
 
+  // @Column({ type: 'datetime', nullable: true })
+  // lastLoginTime: Date;
+
   @Column({ type: 'tinyint', default: 0 })
   isDelete: number;
 

@@ -3,13 +3,26 @@
   "collection": "@nestjs/schematics",
   "sourceRoot": "src",
   "compilerOptions": {
-    "deleteOutDir": true,
-    "webpack": true,
-    "tsConfigPath": "tsconfig.json",
-    "assets": [
-      "**/*.js"
-    ],
-    "watchAssets": true
+    "deleteOutDir": true
   },
-  "entryFile": "main"
+  "projects": {
+    "default": {
+      "type": "application",
+      "root": "",
+      "entryFile": "main",
+      "sourceRoot": "src",
+      "compilerOptions": {
+        "tsConfigPath": "tsconfig.json"
+      }
+    },
+    "minimal": {
+      "type": "application", 
+      "root": "",
+      "entryFile": "main.minimal",
+      "sourceRoot": "src",
+      "compilerOptions": {
+        "tsConfigPath": "tsconfig.json"
+      }
+    }
+  }
 }

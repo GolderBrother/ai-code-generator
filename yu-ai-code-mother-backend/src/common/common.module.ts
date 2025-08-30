@@ -1,26 +1,9 @@
 import { Module } from '@nestjs/common';
-import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
+import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { APP_GUARD } from '@nestjs/core';
-
-// 守卫
-import { JwtAuthGuard } from './guards/jwt-auth.guard';
-import { RolesGuard } from './guards/roles.guard';
-
-// 策略
 import { JwtStrategy } from './strategies/jwt.strategy';
-
-
-// 拦截器
-import { TransformInterceptor } from './interceptors/transform.interceptor';
-import { LoggingInterceptor } from './interceptors/logging.interceptor';
-
-// 过滤器
-import { HttpExceptionFilter } from './filters/http-exception.filter';
-
-// 管道
-import { ValidationPipe } from './pipes/validation.pipe';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
 
 @Module({
   imports: [
@@ -28,42 +11,13 @@ import { ValidationPipe } from './pipes/validation.pipe';
     JwtModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        secret: configService.get('JWT_SECRET', 'your-secret-key'),
-        signOptions: {
-          expiresIn: configService.get('JWT_EXPIRES_IN', '7d'),
-        },
+        secret: configService.get<string>('JWT_SECRET') || 'default-secret',
+        signOptions: { expiresIn: '24h' },
       }),
       inject: [ConfigService],
     }),
   ],
-  providers: [
-    JwtAuthGuard,
-    RolesGuard,
-    // 移除全局 JWT 守卫，因为应用使用 Session 认证
-    // {
-    //   provide: APP_GUARD,
-    //   useClass: JwtAuthGuard,
-    // },
-    // 移除全局角色守卫，改为按需使用
-    // {
-    //   provide: APP_GUARD,
-    //   useClass: RolesGuard,
-    // },
-    JwtStrategy,
-    TransformInterceptor,
-    LoggingInterceptor,
-    HttpExceptionFilter,
-    ValidationPipe,
-  ],
-  exports: [
-    JwtModule,
-    PassportModule,
-    JwtAuthGuard,
-    RolesGuard,
-    TransformInterceptor,
-    LoggingInterceptor,
-    HttpExceptionFilter,
-    ValidationPipe,
-  ],
+  providers: [JwtStrategy, JwtAuthGuard],
+  exports: [JwtAuthGuard, JwtModule],
 })
 export class CommonModule {}

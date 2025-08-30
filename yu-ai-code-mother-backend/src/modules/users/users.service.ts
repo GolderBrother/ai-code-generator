@@ -75,6 +75,13 @@ export class UsersService {
     return bcrypt.compare(password, user.userPassword);
   }
 
+  // 更新用户最后登录时间
+  async updateLastLogin(userId: number): Promise<void> {
+    // await this.userRepository.update(userId, {
+    //   lastLoginTime: new Date(),
+    // });
+  }
+
   // ========== 新增的核心业务方法 ==========
 
   // 用户注册

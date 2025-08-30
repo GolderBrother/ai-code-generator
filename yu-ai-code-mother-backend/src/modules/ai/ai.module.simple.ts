@@ -1,11 +1,20 @@
 import { Module } from '@nestjs/common';
-import { AiCodeGeneratorService } from './ai-code-generator.service';
+import { ConfigModule } from '@nestjs/config';
+import { AiController } from './ai.controller';
+import { AiService } from './ai.service';
+import { AiCodeGeneratorService } from './services/ai-code-generator.service';
 
 /**
- * 简化的 AI 模块
+ * AI模块 - 简化版本
+ * 专注于核心代码生成功能
  */
 @Module({
-  providers: [AiCodeGeneratorService],
-  exports: [AiCodeGeneratorService],
+  imports: [ConfigModule],
+  controllers: [AiController],
+  providers: [
+    AiService,
+    AiCodeGeneratorService,
+  ],
+  exports: [AiService, AiCodeGeneratorService],
 })
-export class AiModule {}
+export class AiSimpleModule {}

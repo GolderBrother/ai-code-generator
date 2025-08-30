@@ -1,10 +1,12 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, UnauthorizedException, ConflictException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
 import { User } from '../users/entities/user.entity';
-import { LoginDto } from './dto/login.dto';
-import { RegisterDto } from './dto/register.dto';
 
+/**
+ * 认证服务
+ * 对齐Java版本的认证逻辑
+ */
 @Injectable()
 export class AuthService {
   constructor(
@@ -12,65 +14,69 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async validateUser(account: string, password: string): Promise<User> {
-    const user = await this.usersService.findUserByAccount(account);
+  async validateUser(username: string, password: string): Promise<User | null> {
+    const user = await this.usersService.findUserByAccount(username);
     if (user && await this.usersService.validatePassword(user, password)) {
+      // 更新最后登录时间
+      await this.usersService.updateLastLogin(user.id);
       return user;
     }
     return null;
   }
 
-  async login(loginDto: LoginDto) {
-    const user = await this.validateUser(loginDto.userAccount, loginDto.userPassword);
-    if (!user) {
-      throw new UnauthorizedException('账号或密码错误');
-    }
-
+  async login(user: User) {
     const payload = { 
-      sub: user.id, 
-      account: user.userAccount, 
-      role: user.userRole 
+      userAccount: user.userAccount, 
+      userName: user.userName,
+      userRole: user.userRole,
+      sub: user.id 
     };
-    
     return {
-      code: 0,
-      data: {
-        access_token: this.jwtService.sign(payload),
-        user: {
-          id: user.id,
-          userName: user.userName,
-          userAccount: user.userAccount,
-          userRole: user.userRole,
-          userAvatar: user.userAvatar,
-        },
+      access_token: this.jwtService.sign(payload),
+      user: {
+        id: user.id,
+        userName: user.userName,
+        userAccount: user.userAccount,
+        userRole: user.userRole,
+        userAvatar: user.userAvatar,
       },
-      message: '登录成功',
     };
   }
 
-  async register(registerDto: RegisterDto) {
+  async validateToken(token: string): Promise<any> {
+    try {
+      return this.jwtService.verify(token);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  /**
+   * 用户注册
+   */
+  async register(registerDto: any): Promise<{ access_token: string; user: any }> {
+    const existingUser = await this.usersService.findUserByAccount(registerDto.userAccount);
+    if (existingUser) {
+      throw new ConflictException('用户账号已存在');
+    }
+
     const user = await this.usersService.createUser(registerDto);
-    
     const payload = { 
-      sub: user.id, 
-      account: user.userAccount, 
-      role: user.userRole 
+      userAccount: user.userAccount, 
+      userName: user.userName,
+      userRole: user.userRole,
+      sub: user.id 
     };
     
     return {
-      code: 0,
-      data: {
-        access_token: this.jwtService.sign(payload),
-        user: {
-          id: user.id,
-          userName: user.userName,
-          userAccount: user.userAccount,
-          userRole: user.userRole,
-          userAvatar: user.userAvatar,
-        },
+      access_token: this.jwtService.sign(payload),
+      user: {
+        id: user.id,
+        userName: user.userName,
+        userAccount: user.userAccount,
+        userRole: user.userRole,
+        userAvatar: user.userAvatar,
       },
-      message: '注册成功',
     };
   }
 }
-

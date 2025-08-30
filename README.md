@@ -1,12 +1,5 @@
 # AI 零代码应用生成平台
 
-> 作者：[程序员鱼皮](https://yuyuanweb.feishu.cn/wiki/Abldw5WkjidySxkKxU2cQdAtnah)
->
-> 本项目为教学项目，提供完整视频教程 + 文字教程 + 简历写法 + 面试题解 + 答疑服务，帮你提升项目能力，给简历增加亮点！
->
-> ⭐️ 加入项目系列学习：[加入编程导航](https://www.codefather.cn/vip)
-
-
 ## 一、项目介绍
 
 > 视频介绍：https://www.bilibili.com/video/BV1XsbSznEs4
@@ -99,25 +92,6 @@
 此外，还能学会很多 AI 编程、系统架构设计、技术方案对比的方法，提升排查问题、自主解决 Bug 的能力。鱼皮还给大家提供了大量的项目扩展点，有能力的同学可以进一步拉开和别人的区分度，无限进步！
 
 
-
-### 鱼皮系列项目优势
-
-鱼皮的原创项目以 **实战** 为主，用 **全程直播** 的方式 **从 0 到 1** 带做，从需求分析、技术选型、项目设计、项目初始化、Demo 编写、前后端开发实现、项目优化、部署上线等，每个环节我都 **从理论到实践** 给大家讲的明明白白、每个细节都不放过！
-
-比起看网上的教程学习，鱼皮项目系列的优势：从学知识 => 实践项目 => 复习笔记 => 项目答疑 => 简历写法 => 面试题解的一条龙服务
-
-![](https://pic.yupi.icu/1/image-20250724150852970.png)
-
-编程导航已有 **近 20 套项目教程！** 每个项目的学习重点不同，几乎全都是前端 + 后端的 **全栈项目** 。
-
-详细请见：[https://codefather.cn/course](https://www.codefather.cn/course)（在该页面右侧有教程推荐和学习建议）
-
-往期项目介绍视频：[https://bilibili.com/video/BV1YvmbYbEgS](https://www.bilibili.com/video/BV1YvmbYbEgS/)
-
-![](https://pic.yupi.icu/1/1753338231169-664e7486-0f52-4153-a28b-0a8757012009.png)
-
-
-
 ## 三、更多介绍
 
 功能模块：
@@ -131,27 +105,3 @@
 架构设计：
 
 ![](https://pic.yupi.icu/1/AI%E5%BA%94%E7%94%A8%E7%94%9F%E6%88%90%E5%B9%B3%E5%8F%B0%E6%9E%B6%E6%9E%84%E5%9B%BE.png)
-
-
-## 第一期免费看
-
-第一期是公开讲解，给大家介绍项目背景、项目功能、技术选型、架构设计、教程计划等。
-
-视频地址：[https://www.bilibili.com/video/BV1Eq5DzcE9o](https://www.bilibili.com/video/BV1XsbSznEs4/)
-​	
-
-## 加入项目学习
-
-编程导航已有 **近 20 套项目教程**！每个项目的学习重点不同，几乎全都是前端 + 后端的 **全栈** 项目 。
-
-![](https://pic.yupi.icu/1/wechat_2025-07-24_115207_359.png)
-
-欢迎加入 [编程导航](https://mp.weixin.qq.com/s/I1oD6pAaWBvGLyFDT9AgvA?token=1925632390&lang=zh_CN)，加入后不仅可以全程跟学本项目，往期 [10+ 套原创项目教程](https://mp.weixin.qq.com/s/omIazLMQlTo9M3jFFH7NzQ?token=70787607&lang=zh_CN) 也都可以无限回看。还能享受更多原创技术资料、学习和求职指导、上百场面试回放视频，开启你的编程起飞之旅~
-
-🧧 助力新项目学习，给大家发放 **限时编程导航优惠券**，扫码即可领券加入。加入三天内不满意可全额退款，欢迎加入体验，名额有限，速来学习！
-
-<img width="404" alt="image" src="https://github.com/user-attachments/assets/56411098-b60e-4267-8ba2-4ebc5d416afc" />
-
-1 天不到 1 块钱，绝对是对自己最值的投资！成为编程导航会员后，可以解锁 10 多套项目的教程和资料，PC 网站和 APP 都可以学习，如图：
-
-![](https://pic.yupi.icu/1/image-20250120113756426-20250422160856746.png)

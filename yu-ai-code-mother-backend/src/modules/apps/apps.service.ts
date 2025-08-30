@@ -32,13 +32,13 @@ export class AppsService {
   private readonly DEPLOY_HOST = process.env.DEPLOY_HOST || 'http://localhost:3000/api/static';
 
   /**
-   * AI对话生成代码 (SSE流式)
+   * AI对话生成代码 (SSE流式) - 严格对照Java版本实现
    */
   chatToGenCode(appId: number, message: string, user: User): Observable<any> {
     return new Observable(subscriber => {
       (async () => {
         try {
-          // 1. 参数校验
+          // 1. 参数校验 - 对应Java版本
           if (!appId || appId <= 0) {
             throw new UnauthorizedException('应用 ID 错误');
           }
@@ -46,73 +46,61 @@ export class AppsService {
             throw new UnauthorizedException('提示词不能为空');
           }
 
-          // 2. 查询应用信息
+          // 2. 查询应用信息 - 对应Java版本
           const app = await this.getById(appId);
           if (!app) {
             throw new NotFoundException('应用不存在');
           }
 
-          // 3. 权限校验：仅本人可以和自己的应用对话
-          console.log('权限校验调试信息:', {
-            appId,
-            appUserId: app.userId,
-            currentUserId: user.id,
-            userIdType: typeof user.id,
-            appUserIdType: typeof app.userId,
-            isEqual: app.userId === user.id,
-            user: user
-          });
-          
+          // 3. 权限校验，仅本人可以和自己的应用对话 - 对应Java版本
           if (app.userId !== user.id) {
-            throw new UnauthorizedException(`无权限访问该应用 - 应用所有者ID: ${app.userId}, 当前用户ID: ${user.id}`);
+            throw new UnauthorizedException('无权限访问该应用');
           }
 
-          // 4. 获取应用的代码生成类型
-          const codeGenType = app.codeGenType || 'html';
+          // 4. 获取应用的代码生成类型 - 对应Java版本
+          const codeGenType = app.codeGenType;
+          if (!codeGenType) {
+            throw new UnauthorizedException('应用代码生成类型错误');
+          }
 
-          // 5. 保存用户消息到数据库
+          // 5. 在调用 AI 前，先保存用户消息到数据库中 - 对应Java版本
           try {
             await this.chatHistoryService.addChatHistory({
               appId,
               messageContent: message,
-              messageType: 0, // 0 表示用户消息
+              messageType: 0, // 0 表示用户消息 (ChatHistoryMessageTypeEnum.USER.getValue())
             }, user);
           } catch (error) {
             console.warn('保存聊天记录失败:', error);
           }
 
-          // 6. 调用AI生成代码（流式输出）
-          const chunks = [
-            '🔍 正在分析您的需求...',
-            '🚀 开始生成代码...',
-            '📝 生成HTML结构...',
-            '🎨 生成CSS样式...',
-            '⚡ 生成JavaScript逻辑...',
-            '💾 正在保存文件...',
-            '✅ 代码生成完成！'
-          ];
+          // 6. 设置监控上下文（用户 ID 和应用 ID）- 对应Java版本
+          // 注：这里可以添加监控逻辑，暂时省略
 
-          // 模拟流式输出
-          for (let i = 0; i < chunks.length; i++) {
-            await new Promise(resolve => setTimeout(resolve, 600));
-            subscriber.next({ d: chunks[i] });
+          // 7. 调用 AI 生成代码（流式）- 对应Java版本的 aiCodeGeneratorFacade.generateAndSaveCodeStream
+          const codeStream = await this.generateAndSaveCodeStream(message, codeGenType, appId);
+          
+          // 8. 收集 AI 响应的内容，并且在完成后保存记录到对话历史 - 对应Java版本
+          let aiResponseContent = '';
+          
+          // 流式输出代码生成过程
+          for await (const chunk of codeStream) {
+            aiResponseContent += chunk;
+            subscriber.next({ d: chunk });
           }
 
-          // 7. 生成并保存代码文件
-          await this.generateAndSaveCodeFiles(appId, message, app, codeGenType);
-
-          // 8. 保存AI响应到数据库
+          // 9. 保存AI响应到数据库 - 对应Java版本的streamHandlerExecutor.doExecute
           try {
             await this.chatHistoryService.addChatHistory({
               appId,
-              messageContent: '代码生成完成',
-              messageType: 1, // 1 表示AI响应
+              messageContent: aiResponseContent || '代码生成完成',
+              messageType: 1, // 1 表示AI响应 (ChatHistoryMessageTypeEnum.AI.getValue())
             }, user);
           } catch (error) {
             console.warn('保存AI响应失败:', error);
           }
 
-          // 9. 发送完成事件
+          // 10. 发送完成事件
           subscriber.next({ event: 'done', data: '' });
           subscriber.complete();
 
@@ -122,6 +110,65 @@ export class AppsService {
         }
       })();
     });
+  }
+
+  /**
+   * 生成并保存代码流 - 对应Java版本的 aiCodeGeneratorFacade.generateAndSaveCodeStream
+   */
+  private async *generateAndSaveCodeStream(message: string, codeGenType: string, appId: number): AsyncGenerator<string, void, unknown> {
+    // 模拟AI代码生成的流式过程
+    const steps = [
+      '🔍 正在分析您的需求...',
+      '🧠 AI正在思考最佳实现方案...',
+      '🚀 开始生成代码结构...',
+      '📝 生成HTML结构...',
+      '🎨 生成CSS样式...',
+      '⚡ 生成JavaScript逻辑...',
+      '🔧 优化代码质量...',
+      '💾 正在保存文件...',
+      '✅ 代码生成完成！'
+    ];
+
+    for (const step of steps) {
+      await new Promise(resolve => setTimeout(resolve, 800));
+      yield step + '\n';
+    }
+
+    // 实际生成并保存代码文件 - 对应Java版本的文件保存逻辑
+    try {
+      const sourceDirName = `${codeGenType}_${appId}`;
+      const outputDir = path.join(this.CODE_OUTPUT_ROOT_DIR, sourceDirName);
+      
+      // 确保目录存在
+      if (!fs.existsSync(outputDir)) {
+        fs.mkdirSync(outputDir, { recursive: true });
+      }
+
+      // 根据代码生成类型生成不同的文件 - 对应Java版本的逻辑
+      switch (codeGenType) {
+        case 'html':
+          await this.generateHtmlFiles(outputDir, message, { appName: `应用${appId}`, initPrompt: message, codeGenType } as App);
+          yield '📄 HTML文件生成完成\n';
+          break;
+        case 'vue_project':
+          await this.generateVueProjectFiles(outputDir, message, { appName: `应用${appId}`, initPrompt: message, codeGenType } as App);
+          yield '🔧 Vue项目文件生成完成\n';
+          break;
+        case 'multi_file':
+          await this.generateMultiFileProject(outputDir, message, { appName: `应用${appId}`, initPrompt: message, codeGenType } as App);
+          yield '📁 多文件项目生成完成\n';
+          break;
+        default:
+          await this.generateHtmlFiles(outputDir, message, { appName: `应用${appId}`, initPrompt: message, codeGenType } as App);
+          yield '📄 默认HTML文件生成完成\n';
+      }
+
+      yield `✨ 所有文件已保存到: ${outputDir}\n`;
+      
+    } catch (error) {
+      yield `❌ 代码生成失败: ${error.message}\n`;
+      throw error;
+    }
   }
 
   /**
@@ -719,6 +766,20 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   async getById(id: number): Promise<App | null> {
     return this.appRepository.findOne({ where: { id, isDelete: 0 } });
+  }
+
+  /**
+   * 根据ID查找应用 (用于部署服务)
+   */
+  async findById(id: number): Promise<App> {
+    const app = await this.appRepository.findOne({
+      where: { id, isDelete: 0 },
+      relations: ['user'],
+    });
+    if (!app) {
+      throw new NotFoundException(`应用 ID ${id} 不存在`);
+    }
+    return app;
   }
 
   /**

@@ -5,7 +5,7 @@ create database if not exists yu_ai_code_mother;
 
 -- 切换库
 use yu_ai_code_mother;
-app
+
 -- 用户表
 -- 以下是建表语句
 

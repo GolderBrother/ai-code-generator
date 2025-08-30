@@ -27,7 +27,14 @@ import { RateLimiterModule } from './modules/rate-limiter/rate-limiter.module';
 import { ProjectModule } from './modules/project/project.module';
 import { ExceptionModule } from './modules/exception/exception.module';
 import { AppController } from './app.controller';
+import { CoreModule } from './modules/core/core.module';
+import { DeployModule } from './modules/deploy/deploy.module';
+import { MonitoringModule } from './modules/monitoring/monitoring.module';
+import { ToolsModule } from './modules/tools/tools.module';
 
+/**
+ * 应用主模块 - 完整版本，包含所有功能模块
+ */
 @Module({
   imports: [
     // 配置模块
@@ -72,6 +79,12 @@ import { AppController } from './app.controller';
     RateLimiterModule,
     ProjectModule,
     ExceptionModule,
+
+    // 其他
+    CoreModule,
+    ToolsModule,
+    DeployModule,
+    MonitoringModule,
   ],
   controllers: [AppController],
   providers: [],
