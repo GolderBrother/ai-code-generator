@@ -9,7 +9,7 @@ export class DatabaseConfig implements TypeOrmOptionsFactory {
 
   createTypeOrmOptions(): TypeOrmModuleOptions {
     // 获取环境变量或使用默认值
-    const host = this.configService.get("DATABASE_HOST", "localhost");
+    const host = this.configService.get("DATABASE_HOST", "127.0.0.1");
     const port = this.configService.get("DATABASE_PORT", 3306);
     const username = this.configService.get("DATABASE_USERNAME", "root");
     const password = this.configService.get("DATABASE_PASSWORD", "root");
@@ -31,8 +31,8 @@ export class DatabaseConfig implements TypeOrmOptionsFactory {
       username,
       password,
       database,
-      synchronize: isDevelopment, // 开发环境启用同步
-      // synchronize: false, // 如果仍有问题可以禁用
+      // synchronize: isDevelopment, // 开发环境启用同步
+      synchronize: false, // 如果仍有问题可以禁用
       dropSchema: false, // 不删除现有数据
       logging: isDevelopment,
       charset: "utf8mb4",

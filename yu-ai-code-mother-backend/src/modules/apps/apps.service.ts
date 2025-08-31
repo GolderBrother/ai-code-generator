@@ -38,7 +38,7 @@ export class AppsService {
     return new Observable(subscriber => {
       (async () => {
         try {
-          // 1. 参数校验 - 对应Java版本
+          // 1. 参数校验 - 对应Java版本的ThrowUtils.throwIf
           if (!appId || appId <= 0) {
             throw new UnauthorizedException('应用 ID 错误');
           }
@@ -46,7 +46,7 @@ export class AppsService {
             throw new UnauthorizedException('提示词不能为空');
           }
 
-          // 2. 查询应用信息 - 对应Java版本
+          // 2. 查询应用信息 - 对应Java版本的this.getById(appId)
           const app = await this.getById(appId);
           if (!app) {
             throw new NotFoundException('应用不存在');
@@ -74,11 +74,11 @@ export class AppsService {
             console.warn('保存聊天记录失败:', error);
           }
 
-          // 6. 设置监控上下文（用户 ID 和应用 ID）- 对应Java版本
+          // 6. 设置监控上下文（用户 ID 和应用 ID）- 对应Java版本的MonitorContextHolder.setContext
           // 注：这里可以添加监控逻辑，暂时省略
 
           // 7. 调用 AI 生成代码（流式）- 对应Java版本的 aiCodeGeneratorFacade.generateAndSaveCodeStream
-          const codeStream = await this.generateAndSaveCodeStream(message, codeGenType, appId);
+          const codeStream = this.generateAndSaveCodeStreamReal(message, codeGenType, appId, app);
           
           // 8. 收集 AI 响应的内容，并且在完成后保存记录到对话历史 - 对应Java版本
           let aiResponseContent = '';
@@ -113,61 +113,105 @@ export class AppsService {
   }
 
   /**
-   * 生成并保存代码流 - 对应Java版本的 aiCodeGeneratorFacade.generateAndSaveCodeStream
+   * 真实的AI代码生成流 - 严格对应Java版本的 aiCodeGeneratorFacade.generateAndSaveCodeStream
    */
-  private async *generateAndSaveCodeStream(message: string, codeGenType: string, appId: number): AsyncGenerator<string, void, unknown> {
-    // 模拟AI代码生成的流式过程
-    const steps = [
-      '🔍 正在分析您的需求...',
-      '🧠 AI正在思考最佳实现方案...',
-      '🚀 开始生成代码结构...',
-      '📝 生成HTML结构...',
-      '🎨 生成CSS样式...',
-      '⚡ 生成JavaScript逻辑...',
-      '🔧 优化代码质量...',
-      '💾 正在保存文件...',
-      '✅ 代码生成完成！'
-    ];
-
-    for (const step of steps) {
-      await new Promise(resolve => setTimeout(resolve, 800));
-      yield step + '\n';
-    }
-
-    // 实际生成并保存代码文件 - 对应Java版本的文件保存逻辑
+  private async *generateAndSaveCodeStreamReal(message: string, codeGenType: string, appId: number, app: App): AsyncGenerator<string, void, unknown> {
     try {
-      const sourceDirName = `${codeGenType}_${appId}`;
-      const outputDir = path.join(this.CODE_OUTPUT_ROOT_DIR, sourceDirName);
+      // 1. 构建用户输入 - 对应Java版本的buildUserInput方法
+      yield '🔍 正在分析您的需求...\n';
+      const userInput = this.buildUserInput(app, message);
       
-      // 确保目录存在
-      if (!fs.existsSync(outputDir)) {
-        fs.mkdirSync(outputDir, { recursive: true });
-      }
-
-      // 根据代码生成类型生成不同的文件 - 对应Java版本的逻辑
-      switch (codeGenType) {
-        case 'html':
-          await this.generateHtmlFiles(outputDir, message, { appName: `应用${appId}`, initPrompt: message, codeGenType } as App);
-          yield '📄 HTML文件生成完成\n';
-          break;
-        case 'vue_project':
-          await this.generateVueProjectFiles(outputDir, message, { appName: `应用${appId}`, initPrompt: message, codeGenType } as App);
-          yield '🔧 Vue项目文件生成完成\n';
-          break;
-        case 'multi_file':
-          await this.generateMultiFileProject(outputDir, message, { appName: `应用${appId}`, initPrompt: message, codeGenType } as App);
-          yield '📁 多文件项目生成完成\n';
-          break;
-        default:
-          await this.generateHtmlFiles(outputDir, message, { appName: `应用${appId}`, initPrompt: message, codeGenType } as App);
-          yield '📄 默认HTML文件生成完成\n';
-      }
-
-      yield `✨ 所有文件已保存到: ${outputDir}\n`;
+      // 2. 调用AI生成代码 - 对应Java版本的aiManager.doSyncStableRequest
+      yield '🧠 AI正在思考最佳实现方案...\n';
+      const generatedCode = await this.aiService.doSyncStableRequest(userInput, codeGenType);
+      
+      // 3. 保存生成的代码到文件 - 对应Java版本的文件保存逻辑
+      yield '💾 正在保存文件...\n';
+      const savedFiles = await this.saveGeneratedCodeToFiles(app, generatedCode, codeGenType, appId);
+      
+      yield `✅ 代码生成完成！文件已保存到: ${savedFiles.join(', ')}\n`;
+      yield `\n生成的代码内容:\n${generatedCode}\n`;
       
     } catch (error) {
       yield `❌ 代码生成失败: ${error.message}\n`;
       throw error;
+    }
+  }
+
+  /**
+   * 构建用户输入 - 对应Java版本的buildUserInput方法
+   * 这是关键方法，将应用信息和用户消息组合成完整的AI提示词
+   */
+  private buildUserInput(app: App, userMessage: string): string {
+    const userInput = `
+应用信息：
+应用名称：${app.appName || '未命名应用'}
+应用描述：${app.initPrompt || '无'}
+应用类型：${app.codeGenType}
+应用标签：无
+
+用户需求：
+${userMessage}
+
+请根据以上应用信息和用户需求，生成完整可用的${app.codeGenType}代码。代码要求：
+1. 功能完整，可直接运行
+2. 代码风格现代化、专业
+3. 界面美观，用户体验良好
+4. 包含必要的交互功能
+5. 响应式设计，适配各种设备
+`;
+
+    console.log(`构建的用户输入长度: ${userInput.length}`);
+    return userInput;
+  }
+
+  /**
+   * 保存生成的代码到文件 - 对应Java版本的文件保存逻辑
+   */
+  private async saveGeneratedCodeToFiles(app: App, generatedCode: string, codeGenType: string, appId: number): Promise<string[]> {
+    const sourceDirName = `${codeGenType}_${appId}`;
+    const outputDir = path.join(this.CODE_OUTPUT_ROOT_DIR, sourceDirName);
+    
+    // 确保输出目录存在
+    if (!fs.existsSync(outputDir)) {
+      fs.mkdirSync(outputDir, { recursive: true });
+    }
+    
+    const savedFiles: string[] = [];
+    
+    try {
+      // 根据应用类型保存不同的文件
+      switch (codeGenType) {
+        case 'html':
+          const htmlFile = path.join(outputDir, 'index.html');
+          fs.writeFileSync(htmlFile, generatedCode, 'utf-8');
+          savedFiles.push(htmlFile);
+          break;
+          
+        case 'vue_project':
+          const vueFile = path.join(outputDir, 'App.vue');
+          fs.writeFileSync(vueFile, generatedCode, 'utf-8');
+          savedFiles.push(vueFile);
+          break;
+          
+        case 'multi_file':
+          const multiFile = path.join(outputDir, 'index.html');
+          fs.writeFileSync(multiFile, generatedCode, 'utf-8');
+          savedFiles.push(multiFile);
+          break;
+          
+        default:
+          const defaultFile = path.join(outputDir, 'index.html');
+          fs.writeFileSync(defaultFile, generatedCode, 'utf-8');
+          savedFiles.push(defaultFile);
+      }
+      
+      console.log(`代码已保存到: ${savedFiles.join(', ')}`);
+      return savedFiles;
+      
+    } catch (error) {
+      console.error(`保存代码文件失败: ${error.message}`, error);
+      throw new Error(`保存代码文件失败: ${error.message}`);
     }
   }
 
@@ -208,10 +252,13 @@ export class AppsService {
   }
 
   /**
-   * 生成HTML文件
+   * 生成HTML文件 - 生成真实可用的代码
    */
   private async generateHtmlFiles(outputDir: string, message: string, app: App): Promise<void> {
+    // 生成真实的HTML内容
     const htmlContent = this.generateHtmlContent(message, app);
+    
+    // 保存到文件
     const htmlFilePath = path.join(outputDir, 'index.html');
     fs.writeFileSync(htmlFilePath, htmlContent, 'utf8');
   }
@@ -724,6 +771,14 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   chatGenCode(appId: number, message: string, user: User): Observable<any> {
     return this.chatToGenCode(appId, message, user);
+  }
+
+  /**
+   * 构建完整的提示词 - 对应Java版本
+   */
+  private buildFullPrompt(app: App, message: string): string {
+    const initPrompt = app.initPrompt || '创建一个现代化的Web应用';
+    return `${initPrompt}\n\n用户需求：${message}\n\n请生成完整的、可运行的代码，包含现代化的样式和交互功能。`;
   }
 
   /**

@@ -15,7 +15,7 @@ import { MultiLevelCacheService } from './services/multi-level-cache.service';
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         store: redisStore as any,
-        host: configService.get('REDIS_HOST', 'localhost'),
+        host: configService.get('REDIS_HOST', '127.0.0.1'),
         port: configService.get('REDIS_PORT', 6379),
         password: configService.get('REDIS_PASSWORD'),
         db: configService.get('REDIS_DB', 0),

@@ -49,12 +49,12 @@ import { ToolsModule } from './modules/tools/tools.module';
       useClass: DatabaseConfig,
     }),
 
-    // 缓存模块
-    CacheModule.registerAsync({
-      imports: [ConfigModule],
-      useClass: RedisConfig,
-      isGlobal: true,
-    }),
+    // 缓存模块 - 暂时禁用以解决Redis连接问题
+    // CacheModule.registerAsync({
+    //   imports: [ConfigModule],
+    //   useClass: RedisConfig,
+    //   isGlobal: true,
+    // }),
 
     // 定时任务模块
     ScheduleModule.forRoot(),
